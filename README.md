@@ -1,1 +1,2 @@
-# GRP
+# GRPApp
+Geographic Response Plan Application
