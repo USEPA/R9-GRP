@@ -1,0 +1,27 @@
+<md-content flex layout="column" class="md-padding">
+    <div layout="column" class="md-whiteframe-24dp" flex>
+        <list-view template-url="controllers/iap/assignments/assignments.html"></list-view>
+    </div>
+</md-content>
+
+<md-content flex layout="column" class="md-padding">
+    <div layout="column" class="md-whiteframe-24dp" flex layout-padding>
+        <span ng-show="assignment">
+        <grp-form-buttons flex-gt-md="auto" flex
+                          title="{{assignment.attributes.Agency ? 'Assignment List for '.concat(assignment.attributes.Agency) : 'New Assignment List'}}"
+                          save="saveAssignment()"
+                          delete="deleteAssignment($event)"
+                          hide-delete="assignment.attributes.GlobalID === 'new'"
+                          hide-export="true"
+                          cancel="cancel()">
+</grp-form-buttons>
+        <form-view template-url="controllers/iap/assignments/assignment/assignment.html"></form-view>
+        </span>
+        <div ng-hide="assignment" layout="column" layout-align="center center" flex>
+            <div style="margin-left:-24px">
+                <md-icon style="font-size: 96px;" class="material-icons">arrow_back</md-icon>
+            </div>
+            <div style="padding-top:40px; padding-left: 65px"><h2>Select Assignment List</h2></div>
+        </div>
+    </div>
+</md-content>

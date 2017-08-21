@@ -1,0 +1,27 @@
+<md-content flex layout="column" class="md-padding">
+    <div layout="column" class="md-whiteframe-24dp" flex>
+        <list-view template-url="controllers/iap/objectives/objectives.html"></list-view>
+    </div>
+</md-content>
+
+<md-content flex layout="column" class="md-padding">
+    <div layout="column" class="md-whiteframe-24dp" flex layout-padding>
+        <span ng-show="category">
+        <grp-form-buttons
+                title="{{category.attributes.Category ? 'Category:'.concat(category.attributes.Category) : 'New Category'}}"
+                save="saveCategory()"
+                delete="deleteCategory($event)"
+                hide-delete="category.attributes.GlobalID === 'new'"
+                hide-export="true"
+                cancel="cancel()">
+        </grp-form-buttons>
+        <form-view template-url="controllers/iap/objectives/category/category.html"></form-view>
+        </span>
+        <div ng-hide="category" layout="column" layout-align="center center" flex>
+            <div style="margin-left:-24px">
+                <md-icon style="font-size: 96px;" class="material-icons">arrow_back</md-icon>
+            </div>
+            <div style="padding-top:40px; padding-left: 65px"><h2>Select Category</h2></div>
+        </div>
+    </div>
+</md-content>

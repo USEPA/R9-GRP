@@ -1,0 +1,38 @@
+<md-content id="objectivesPanel" layout="column" layout-padding>
+    <div layout="row" ng-hide="$state.includes('main.iap.ics234.objective')">
+        <span flex>
+            <h2>Work Analysis Matrix (ICS 234)</h2>
+        </span>
+        <span flex></span>
+        <span>
+            <md-button ng-click="addObjective()" class="md-raised md-primary">Add Objective</md-button>
+        </span>
+    </div>
+
+    <md-list ng-hide="$state.includes('main.iap.ics234.objective')">
+        <md-list-item class="md-2-line" ng-repeat="objective in objectives | orderBy: 'attributes.SortOrder'"
+                      ng-init="objective.attributes.SortOrder = $index" style="padding:0">
+            <div class="md-list-item-text sortable" layout="column" drag drop="drop(oldPriority, newPriority)"
+                 priority="{{objective.attributes.SortOrder}}">
+                <div layout="row">
+                    <md-icon class="material-icons drag">reorder
+                        <md-tooltip md-direction="bottom">
+                            Drag to reorder
+                        </md-tooltip>
+                    </md-icon>
+                    <div layout="column" flex="85">
+                        <!--<p>Objective:{{ objective.attributes.Text | limitTo: 80 }}{{ objective.attributes.Text.length >
+                            80 ? '...' : '' }}</p>-->
+                        <h3>Objective #{{ objective.attributes.SortOrder+1}}: {{ objective.attributes.Text}}</h3>
+                        <p>Type: {{ objective.attributes.Type }}</p>
+                    </div>
+                    <!--<span flex></span>-->
+                    <!--<div layout="column" style="padding: 0 15px 0 5px" class="edit">-->
+                    <md-icon ng-click="viewObjective(objective)" class="material-icons edit">mode_edit</md-icon>
+                </div>
+            </div>
+            <md-divider></md-divider>
+        </md-list-item>
+    </md-list>
+    <div ui-view ng-show="$state.includes('main.iap.ics234.objective')"></div>
+</md-content>

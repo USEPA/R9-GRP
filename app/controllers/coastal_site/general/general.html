@@ -1,0 +1,136 @@
+<md-content id="sitePanel" layout="column" layout-padding>
+
+    <grp-form-buttons title="General"
+                      save="siteForm.$submitted = true; siteForm.$valid && save()"
+                      delete="delete(coastalSites.site, $event)"
+                      hide-delete="$state.includes('main.coastal_site', {siteid: 'new'})"
+                      export="export(coastalSites.site)" export-loading="exportLoading"
+                      hide-export="$state.includes('main.coastal_site', {siteid: 'new'})"
+                      cancel="$state.go('main')">
+    </grp-form-buttons>
+
+    <div>
+        <md-input-container class="md-block">
+            <label>{{coastalSites.site.fields.Name.alias}}:</label>
+            <input type="text" ng-model="coastalSites.site.attributes.Name" name="name"
+                   required maxlength="{{coastalSites.site.fields.Name.length}}">
+            <div ng-messages="siteForm.name.$error"
+                 ng-show="siteForm.name.$dirty || siteForm.$submitted && siteForm.name.$invalid">
+                <div ng-message="required">A Name is Required</div>
+            </div>
+        </md-input-container>
+
+        <md-input-container class="md-block">
+            <label>{{coastalSites.site.fields.Other_Name.alias}}:</label>
+            <input type="text" ng-model="coastalSites.site.attributes.Other_Name"
+                   maxlength="{{coastalSites.site.fields.Other_Name.length}}">
+        </md-input-container>
+
+        <md-input-container>
+            <label>{{coastalSites.site.fields.Site_ID.alias}}:</label>
+            <input type="text" ng-model="coastalSites.site.attributes.Site_ID"
+                   maxlength="{{coastalSites.site.fields.Site_ID.length}}">
+        </md-input-container>
+        <md-input-container>
+            <label>{{coastalSites.site.fields.GRP_Map_No.alias}}:</label>
+            <input type="text" ng-model="coastalSites.site.attributes.GRP_Map_No "
+                   maxlength="{{coastalSites.site.fields.GRP_Map_No.length}}">
+        </md-input-container>
+        <md-input-container>
+            <label>{{coastalSites.site.fields.Sector.alias}}:</label>
+            <input type="text" ng-model="coastalSites.site.attributes.Sector"
+                   maxlength="{{coastalSites.site.fields.Sector.length}}">
+        </md-input-container>
+        <div class="col-lg-12">
+            <h3>Protection Priority (Season)</h3>
+        </div>
+
+        <md-input-container>
+            <label>{{coastalSites.site.fields.PP_Spring.alias}}:</label>
+            <input type="text" ng-model="coastalSites.site.attributes.PP_Spring"
+                   maxlength="{{coastalSites.site.fields.PP_Spring.length}}">
+        </md-input-container>
+
+        <md-input-container>
+            <label>{{coastalSites.site.fields.PP_Summer.alias}}:</label>
+            <input type="text" ng-model="coastalSites.site.attributes.PP_Summer"
+                   maxlength="{{coastalSites.site.fields.PP_Summer.length}}">
+        </md-input-container>
+
+        <md-input-container>
+            <label>{{coastalSites.site.fields.PP_Fall.alias}}:</label>
+
+            <input type="text" ng-model="coastalSites.site.attributes.PP_Fall"
+                   maxlength="{{coastalSites.site.fields.PP_Fall.length}}">
+        </md-input-container>
+
+        <md-input-container>
+            <label>{{coastalSites.site.fields.PP_Winter.alias}}:</label>
+            <input type="text" ng-model="coastalSites.site.attributes.PP_Winter"
+                   maxlength="{{coastalSites.site.fields.PP_Winter.length}}">
+        </md-input-container>
+
+        <md-input-container>
+            <label>Latitude:</label>
+            <input class="form-control" type="text" ng-model="coastalSites.site.coordinates.y">
+        </md-input-container>
+
+        <md-input-container>
+            <label>Longitude:</label>
+            <input class="form-control" type="text" ng-model="coastalSites.site.coordinates.x">
+        </md-input-container>
+
+
+        <md-input-container class="md-block">
+
+            <label>{{coastalSites.site.fields.ESI_Map.alias}}:</label>
+            <input class="form-control" type="text" ng-model="coastalSites.site.attributes.ESI_Map"
+                   maxlength="{{coastalSites.site.fields.ESI_Map.length}}">
+        </md-input-container>
+
+        <md-input-container class="md-block">
+            <label>{{coastalSites.site.fields.ESI_Name.alias}}:</label>
+            <input class="form-control" type="text" ng-model="coastalSites.site.attributes.ESI_Name"
+                   maxlength="{{coastalSites.site.fields.ESI_Name.length}}">
+        </md-input-container>
+
+        <md-input-container class="md-block">
+            <label>{{coastalSites.site.fields.NOAA_Chart.alias}}:</label>
+            <input class="form-control" type="text" ng-model="coastalSites.site.attributes.NOAA_Chart"
+                   maxlength="{{coastalSites.site.fields.NOAA_Chart.length}}">
+        </md-input-container>
+
+        <md-input-container class="md-block">
+            <label>{{coastalSites.site.fields.CHART_Name.alias}}:</label>
+
+            <input class="form-control" type="text" ng-model="coastalSites.site.attributes.CHART_Name"
+                   maxlength="{{coastalSites.site.fields.CHART_Name.length}}">
+        </md-input-container>
+
+
+        <md-input-container class="md-block">
+            <label>{{coastalSites.site.fields.USGS_Quad.alias}}:</label>
+            <input class="form-control" type="text" ng-model="coastalSites.site.attributes.USGS_Quad"
+                   maxlength="{{coastalSites.site.fields.USGS_Quad.length}}">
+        </md-input-container>
+
+        <md-input-container class="md-block">
+            <label>{{coastalSites.site.fields.QUAD_Name.alias}}:</label>
+            <input class="form-control" type="text" ng-model="coastalSites.site.attributes.QUAD_Name"
+                   maxlength="{{coastalSites.site.fields.QUAD_Name.length}}">
+        </md-input-container>
+
+        <md-input-container class="md-block">
+            <label>{{coastalSites.site.fields.Managed_Area.alias}}:</label>
+            <input class="form-control" type="text" ng-model="coastalSites.site.attributes.Managed_Area"
+                   maxlength="{{coastalSites.site.fields.Managed_Area.length}}">
+        </md-input-container>
+
+        <md-input-container class="md-block">
+            <label>{{coastalSites.site.fields.General_Location.alias}}:</label>
+            <input class="form-control" type="text"
+                   ng-model="coastalSites.site.attributes.General_Location"
+                   maxlength="{{coastalSites.site.fields.General_location.length}}">
+        </md-input-container>
+    </div>
+</md-content>

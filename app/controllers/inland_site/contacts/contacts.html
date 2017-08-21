@@ -1,0 +1,32 @@
+<md-content id="contactPanel" layout="column" layout-padding>
+    <div layout="row" ng-hide="$state.includes('main.inland_site.contacts.contact')">
+        <span flex>
+            <h2>Contacts</h2>
+        </span>
+        <span flex></span>
+        <span>
+            <md-button ng-click="$state.go('main.inland_site.contacts.contact', {contactid: 'new'})" class="md-raised md-primary">
+                Add Contact
+            </md-button>
+        </span>
+    </div>
+    <!-- todo: need a better list of contacts -->
+    <md-list ng-hide="$state.includes('main.inland_site.contacts.contact')">
+        <md-list-item class="md-2-line"
+                      ng-click="$state.go('main.inland_site.contacts.contact', {contactid: contact.attributes.GlobalID})"
+                      ng-repeat="contact in contacts">
+            <div class="md-list-item-text" layout="column">
+                <h3>{{ contact.attributes.Name }}, {{ contact.attributes.Agency }}</h3>
+                <p style="max-width: 95%">Type: {{ contact.relationship.attributes.isTrusteeType | contactType:'Trustee, ' }}
+                    {{ contact.relationship.attributes.isEntryAccessType | contactType:'Entry/Access, ' }}
+                    {{ contact.relationship.attributes.isLandownerType | contactType:'Landowner, ' }}
+                    {{ contact.relationship.attributes.isCulturalType | contactType:'Cultural, ' }}
+                    {{ contact.relationship.attributes.isIntakesType | contactType:'Intakes, ' }}
+                    {{ contact.relationship.attributes.isOtherType | contactType:'Other Assistance, ' }}
+                    Phone: {{ contact.attributes.Phone}}, Email: {{ contact.attributes.Email}} </p>
+            </div>
+            <md-divider></md-divider>
+        </md-list-item>
+    </md-list>
+    <div ui-view ng-show="$state.includes('main.inland_site.contacts.contact')"></div>
+</md-content>

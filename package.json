@@ -1,0 +1,22 @@
+{
+  "name": "GRPApp",
+  "private": true,
+  "version": "0.9.1",
+  "description": "EPA ER Geographic Response Plan Application",
+  "repository": "https://github.com/Innovate-Inc/GRPApp",
+  "license": "MIT",
+  "dependencies": {
+    "angular": "1.5.8",
+    "angular-animate": "1.5.8",
+    "angular-aria": "1.5.8",
+    "angular-deferred-bootstrap": "0.1.9",
+    "angular-esri-map": "1.1.6",
+    "angular-local-storage": "0.2.2",
+    "angular-material": "1.1.1",
+    "angular-material-data-table": "^0.10.10",
+    "angular-messages": "1.5.8",
+    "angular-ui-router": "0.3.1",
+    "oclazyload": "1.0.9",
+    "underscore": "1.8.3"
+  }
+}

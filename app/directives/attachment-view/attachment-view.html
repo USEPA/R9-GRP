@@ -1,0 +1,23 @@
+<md-grid-list md-cols="1" md-cols-sm="1" md-cols-md="2" md-cols-gt-md="3"
+        md-row-height-gt-md="1:1" md-row-height="1:1"
+        md-gutter="8px" md-gutter-gt-sm="4px">
+    <md-grid-tile ng-repeat="attachment in attachments | filter: {id: filterId}" md-colspan-sm="1" style="background: #f5f5f5; overflow: hidden;">
+        <md-button class="md-fab md-mini md-accent" aria-label="Delete" ng-click="showDeleteDialog(attachment, $event)"
+                   style="position: absolute; top: 0px; right: 0px; opacity: 0.7;">
+            <md-icon class="material-icons">delete</md-icon>
+        </md-button>
+        <a ng-href="{{attachment.url}}" class="thumbnail" title="Download: {{attachment.name}}" target="_blank">
+            <img class="md-card-image" ng-src="{{attachment.previewUrl}}"
+                 style="max-width: 500px;"/>
+                <span style="text-decoration: none; position: absolute; top:50%; left: 43%; font-size: x-large;
+                color:black;">{{attachment.extension}}</span>
+            <md-grid-tile-footer style="background:rgba(176,190,197,0.7);"><h3>{{attachment.name}}</h3></md-grid-tile-footer>
+        </a>
+    </md-grid-tile>
+    <md-grid-tile md-colspan-sm="1" style="background: #f5f5f5; overflow: hidden; cursor:pointer;" ng-show="maxAttachments ? (attachments | filter: {id: filterId}).length < maxAttachments : true">
+        <a ng-click="showUploadDialog($event)" class="thumbnail" title="Add attachment">
+            <md-icon class="material-icons" style="font-size:150px; position: absolute; top:11%; left:18%;">add</md-icon>
+            <md-grid-tile-footer style="background:rgba(176,190,197,0.7);"><h3>Add Attachment</h3></md-grid-tile-footer>
+        </a>
+    </md-grid-tile>
+</md-grid-list>

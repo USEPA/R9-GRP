@@ -1,0 +1,67 @@
+<md-content id="resourcePanel" layout="column" layout-padding>
+
+    <grp-form-buttons title="Resources at Risk"
+                      save="save()"
+                      delete="delete(inlandSites.site, $event)"
+                      export="export(inlandSites.site)"
+                      export-loading="exportLoading"
+                      cancel="$state.go('main')">
+    </grp-form-buttons>
+
+    <div>
+        <h3>Special Resource Concerns</h3>
+        <md-input-container class="md-block">
+            <label>{{inlandSites.site.fields.Water_Intakes.alias}}:</label>
+                    <textarea class="form-control" ng-model="inlandSites.site.attributes.Water_Intakes"
+                              maxlength="{{inlandSites.site.fields.Water_Intakes.length}}"></textarea>
+        </md-input-container>
+
+
+        <md-input-container class="md-block">
+            <label>{{inlandSites.site.fields.Listed_T_E_Species.alias}}:</label>
+                    <textarea class="form-control" ng-model="inlandSites.site.attributes.Listed_T_E_Species"
+                              maxlength="{{inlandSites.site.fields.Listed_T_E_Species.length}}"></textarea>
+        </md-input-container>
+
+        <md-input-container class="md-block">
+            <label>{{inlandSites.site.fields.Special_Resource_Comments.alias}}:</label>
+                    <textarea class="form-control" ng-model="inlandSites.site.attributes.Special_Resource_Comments"
+                              maxlength="{{inlandSites.site.fields.Special_Resource_Comments.length}}"></textarea>
+        </md-input-container>
+
+        <h3>Resources of Primary Concern</h3>
+        <md-input-container class="md-block">
+            <label>{{inlandSites.site.fields.General_Habitat_and_Wildlife.alias}}:</label>
+                    <textarea class="form-control" ng-model="inlandSites.site.attributes.General_Habitat_and_Wildlife"
+                              maxlength="{{inlandSites.site.fields.General_Habitat_and_Wildlife.length}}"></textarea>
+        </md-input-container>
+        <md-input-container class="md-block">
+            <label>{{inlandSites.site.fields.T_E_Species_of_Special_Concern.alias}}:</label>
+                    <textarea class="form-control" ng-model="inlandSites.site.attributes.T_E_Species_of_Special_Concern"
+                              maxlength="{{inlandSites.site.fields.T_E_Species_of_Special_Concern.length}}"></textarea>
+        </md-input-container>
+
+        <h3>Cultural, Historic, Socio-Economic and Archeological Sensitivities (See Key Contacts)</h3>
+        <md-input-container class="md-block">
+            <label>{{inlandSites.site.fields.Cultural_Historic_Socio_Archeo_.alias}}:</label>
+                    <textarea class="form-control" ng-model="site.attributes.Cultural_Historic_Socio_Archeo_"
+                              maxlength="{{site.fields.Cultural_Historic_Socio_Archeo_.length}}"></textarea>
+        </md-input-container>
+
+
+        <h3>Additional Site Summary Comments</h3>
+        <md-input-container class="md-block">
+            <label>{{inlandSites.site.fields.Additional_Site_Concerns_and_Ad.alias}}:</label>
+            <textarea class="form-control" ng-model="inlandSites.site.attributes.Additional_Site_Concerns_and_Ad"
+                   maxlength="{{inlandSites.site.fields.Additional_Site_Concerns_and_Ad.length}}"></textarea>
+        </md-input-container>
+
+        <md-input-container class="md-block">
+            <label>{{inlandSites.site.fields.Additional_Site_Hazards_and_Res.alias}}:</label>
+            <textarea class="form-control" ng-model="site.attributes.Additional_Site_Hazards_and_Res"
+                   maxlength="{{site.fields.Additional_Site_Hazards_and_Res.length}}"></textarea>
+        </md-input-container>
+
+    </div>
+
+</md-content>

@@ -1,0 +1,36 @@
+<grp-form-buttons flex-gt-md="auto" flex title="{{category.attributes.Category ? 'Category:'.concat(category.attributes.Category) : 'New Category'}}"
+                  save="saveCategory()"
+                  delete="deleteCategory($event)"
+                  hide-delete="$state.includes('**.category', {categoryid: 'new'})"
+                  hide-export="true"
+                  cancel="$state.go('^')"
+                  ng-show="$state.is('main.iap.objectives.category')">
+</grp-form-buttons>
+
+<div>
+    <md-input-container class="md-block">
+        <label>{{category.fields.Category.alias}}:</label>
+        <input type="text" ng-model="category.attributes.Category"
+               maxlength="{{category.fields.Category.length}}">
+    </md-input-container>
+</div>
+
+<md-list ng-hide="category.attributes.GlobalID === 'new'">
+    <md-content layout="row" style="padding-bottom: 25px;">
+        <md-subheader class="md-no-sticky" style="padding-top: 0" flex>Objectives</md-subheader>
+        <span flex></span>
+        <md-button class="md-raised md-primary" ng-click="addObjective()">Add Objective</md-button>
+    </md-content>
+
+    <div ng-repeat="objective in category.objectives | orderBy: 'attributes.ObjectiveNumber'" layout="row">
+        <md-input-container class="md-block" flex-gt-xs="">
+            <label>Objective #{{objective.attributes.ObjectiveNumber = $index+1}}</label>
+            <textarea ng-model="objective.attributes.Objective" maxlength="{{objective.fields.Objective.length}}"></textarea>
+        </md-input-container>
+        <md-button class="md-icon-button" ng-click="deleteObjective(objective, $event)">
+            <md-icon class="material-icons">close</md-icon>
+        </md-button>
+    </div>
+
+</md-list>
+

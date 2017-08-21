@@ -1,0 +1,38 @@
+<grp-form-buttons flex-gt-md="auto" flex
+                  title="{{resource.attributes.ID ? 'Edit Resource' : 'New Resource'}}"
+                  save="resource.save('^')"
+                  delete="resource.delete('Are you sure you want to delete this resource?', event, '^')"
+                  hide-delete="$stateParam.resourceid === 'new'"
+                  hide-export="true"
+                  cancel="$state.go('main.iap.assignments.assignment')">
+</grp-form-buttons>
+<div>
+    <md-input-container class="md-block" style="margin-bottom: 0;">
+        <label>{{resource.fields.ID.alias}}</label>
+        <input type="text" ng-model="resource.attributes.ID" maxlength="{{resource.fields.ID.length}}"/>
+    </md-input-container>
+    <md-input-container class="md-block" style="margin-bottom: 0;">
+        <label>{{resource.fields.Type.alias}}</label>
+        <input type="text" ng-model="resource.attributes.Type" maxlength="{{resource.fields.Type.length}}"/>
+    </md-input-container>
+    <md-input-container class="md-block" style="margin-bottom: 0;">
+        <label>{{resource.fields.Description.alias}}</label>
+        <input type="text" ng-model="resource.attributes.Description" maxlength="{{resource.fields.Description.length}}"/>
+    </md-input-container>
+    <md-input-container class="md-block" style="margin-bottom: 0;">
+        <label>{{resource.fields.Quantity.alias}}</label>
+        <input type="number" ng-model="resource.attributes.Quantity" maxlength="{{resource.fields.Quantity.length}}"/>
+    </md-input-container>
+    <md-input-container class="md-block" style="margin-bottom: 0;">
+        <label>{{resource.fields.Size.alias}}</label>
+        <input type="text" ng-model="resource.attributes.Size" maxlength="{{resource.fields.Size.length}}"/>
+    </md-input-container>
+    <md-input-container class="md-block" style="margin-bottom: 0;">
+        <label>{{resource.fields.Status.alias}}</label>
+        <input type="text" ng-model="resource.attributes.Status" maxlength="{{resource.fields.Status.length}}"/>
+    </md-input-container>
+    <md-input-container class="md-block" style="margin-bottom: 0;">
+        <label>{{resource.fields.Notes.alias}}</label>
+        <input type="text" ng-model="resource.attributes.Notes" maxlength="{{resource.fields.Notes.length}}"/>
+    </md-input-container>
+</div>

@@ -1,0 +1,72 @@
+#customSiteTabs md-tabs-canvas, #customIAPTabs md-tabs-canvas {
+    height: 63px;
+}
+
+#customSiteTabs md-pagination-wrapper, #customIAPTabs md-pagination-wrapper {
+    height: 63px;
+}
+
+#customSiteTabs md-tabs.md-default-theme .md-tab.md-active, #customIAPTabs md-tabs.md-default-theme .md-tab.md-active, md-tabs .md-tab.md-active, md-tabs.md-default-theme .md-tab.md-active md-icon, md-tabs .md-tab.md-active md-icon, md-tabs.md-default-theme .md-tab.md-focused, md-tabs .md-tab.md-focused, md-tabs.md-default-theme .md-tab.md-focused md-icon, md-tabs .md-tab.md-focused md-icon {
+    color: #ffffff;
+    font-weight: bold;
+}
+
+#customSiteTabs md-tab-item.md-tab.ng-scope.ng-isolate-scope.md-ink-ripple, #customIAPTabs md-tab-item.md-tab.ng-scope.ng-isolate-scope.md-ink-ripple {
+    color: #ffffff;
+}
+
+#customSiteTabs .md-tab, #customIAPTabs .md-tab {
+    line-height: 38px;
+    font-size: 15px;
+}
+
+#customSiteTabs md-tabs.md-default-theme md-ink-bar, #customIAPTabs md-tabs.md-default-theme md-ink-bar, md-tabs md-ink-bar {
+    color: #ffffff;
+    background: #ffffff;
+}
+
+#customSiteTabs md-ink-bar, #customIAPTabs md-ink-bar, #customIAPTabs md-ink-bar {
+    height: 3px;
+}
+
+.layout-column.flex {
+    overflow-y: auto;
+}
+
+.clear-objective-button {
+    position: relative;
+    line-height: 20px;
+    text-align: center;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    border: none;
+    border-radius: 50%;
+    padding: 0;
+    font-size: 12px;
+    background: transparent;
+    margin: auto 5px;
+}
+
+.md-subheader .md-subheader-inner {
+    display: block;
+    padding-left: 0;
+}
+
+.sortable .drag {
+    cursor: -webkit-grab;
+    padding: 0 15px 0 5px;
+}
+
+.sortable .drag:active {
+    cursor: -webkit-grabbing !important;
+    padding: 0 15px 0 5px;
+}
+.sortable .edit {
+    cursor: pointer;
+}
+
+.md-virtual-repeat-container.md-autocomplete-suggestions-container {
+    height: 80vh;
+    max-height: 80vh !important;
+}

@@ -1,0 +1,10 @@
+<grp-header></grp-header>
+<grp-toolbar state="$state" ng-hide="$state.is('main.contacts') || $state.includes('main.defaults') || $state.includes('main.grps')"></grp-toolbar>
+<md-content layout="column" flex>
+    <md-content layout-gt-xs="row" layout="column" flex>
+        <grp-map layers="layers" ng-hide="$state.is('main.contacts') || $state.includes('main.defaults') || $state.includes('main.grps')"></grp-map>
+        <md-content layout-gt-xs="column" layout="row" ui-view ng-show="siteMode || iapMode || $state.is('main.contacts') || $state.includes('main.defaults') || $state.includes('main.grps')" flex></md-content>
+    </md-content>
+</md-content>
+
+

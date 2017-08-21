@@ -1,0 +1,74 @@
+<md-content id="sitePanel" layout="column" layout-padding>
+
+    <grp-form-buttons title="Logistics"
+                      save="save()"
+                      delete="delete(site, $event)"
+                      export="export(site)"
+                      export-loading="exportLoading"
+                      cancel="$state.go('main')">
+    </grp-form-buttons>
+
+    <div>
+        <md-input-container class="md-block">
+            <label>{{coastalSites.site.fields.Directions.alias}}:</label>
+                    <textarea class="form-control" ng-model="coastalSites.site.attributes.Directions"
+                              maxlength="{{coastalSites.site.fields.Directions.length}}"></textarea>
+        </md-input-container>
+        <md-input-container class="md-block">
+            <label>{{coastalSites.site.fields.Logistics_Comments.alias}}:</label>
+                    <textarea class="form-control" ng-model="coastalSites.site.attributes.Logistics_Comments"
+                              maxlength="{{coastalSites.site.fields.Logistics_Comments.length}}"></textarea>
+        </md-input-container>
+        <div class="col-lg-12">
+            <h3>Land Access</h3>
+        </div>
+        <md-input-container class="md-block">
+            <label>{{coastalSites.site.fields.Access_Comments.alias}}:</label>
+                    <textarea class="form-control" ng-model="coastalSites.site.attributes.Access_Comments"
+                              maxlength="{{coastalSites.site.fields.Access_Comments.length}}"></textarea>
+        </md-input-container>
+        <div class="col-lg-12">
+            <h3>Water Logistics</h3>
+        </div>
+        <md-input-container class="md-block">
+            <label>{{coastalSites.site.fields.Limitations.alias}}:</label>
+                    <textarea class="form-control" ng-model="coastalSites.site.attributes.Limitations"
+                              maxlength="{{coastalSites.site.fields.Limitations.length}}"></textarea>
+        </md-input-container>
+        <md-input-container class="md-block">
+            <label>{{coastalSites.site.fields.Launching.alias}}:</label>
+                    <textarea class="form-control" ng-model="coastalSites.site.attributes.Launching"
+                              maxlength="{{coastalSites.site.fields.Launching.length}}"></textarea>
+        </md-input-container>
+        <md-input-container class="md-block">
+            <label>{{coastalSites.site.fields.Water_Comments.alias}}:</label>
+                    <textarea class="form-control" ng-model="coastalSites.site.attributes.Water_Comments"
+                              maxlength="{{coastalSites.site.fields.Water_Comments.length}}"></textarea>
+        </md-input-container>
+        <h4>Facilities, Staging Areas, Possible Field Posts, and Equipment Available</h4>
+        <md-input-container class="md-block">
+            <label>{{coastalSites.site.fields.Staging.alias}}:</label>
+                    <textarea class="form-control" ng-model="coastalSites.site.attributes.Staging"
+                              maxlength="{{coastalSites.site.fields.Staging.length}}"></textarea>
+        </md-input-container>
+        <md-input-container class="md-block">
+            <label>{{coastalSites.site.fields.Staging_Comments.alias}}:</label>
+                    <textarea class="form-control" ng-model="coastalSites.site.attributes.Staging_Comments"
+                              maxlength="{{coastalSites.site.fields.Staging_Comments.length}}"></textarea>
+        </md-input-container>
+        <h4>Communications Issues</h4>
+        <md-input-container class="md-block">
+            <label>{{coastalSites.site.fields.Communications_Comments.alias}}:</label>
+                    <textarea class="form-control" ng-model="coastalSites.site.attributes.Communications_Comments"
+                              maxlength="{{coastalSites.site.fields.Communications_Comments.length}}"></textarea>
+        </md-input-container>
+        <h4>Additional Operational Comments</h4>
+
+        <md-input-container class="md-block">
+            <label>{{coastalSites.site.fields.Operational_Comments.alias}}:</label>
+                    <textarea class="form-control" ng-model="coastalSites.site.attributes.Operational_Comments"
+                              maxlength="{{coastalSites.site.fields.Operational_Comments.length}}"></textarea>
+        </md-input-container>
+
+    </div>
+</md-content>

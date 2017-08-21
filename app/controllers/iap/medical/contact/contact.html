@@ -1,0 +1,52 @@
+<md-content id="medicalContactPanel" layout="column" layout-padding>
+    <grp-form-buttons flex-gt-md="auto" flex
+                      title="{{medicalContact.attributes.GlobalID !== 'new' ? 'Edit Medical Contact' : 'New Medical Contact'}}"
+                      save="saveContact()"
+                      delete="deleteContact($event)"
+                      hide-delete="medicalContact.attributes.GlobalID === 'new'"
+                      hide-export="true"
+                      cancel="$state.go('main.iap.medical')">
+    </grp-form-buttons>
+    <div>
+        <form name="medicalContactontactForm">
+            <md-input-container class="md-block" style="margin-bottom: 0">
+                <label>{{medicalContact.fields.Name.alias}}:</label>
+        <textarea type="text" ng-model="medicalContact.attributes.Name"
+                  maxlength="{{medicalContact.fields.Name.length}}"></textarea>
+            </md-input-container>
+            <md-input-container class="md-block" style="margin-bottom: 0">
+                <label>{{medicalContact.fields.Location.alias}}:</label>
+        <textarea type="text" ng-model="medicalContact.attributes.Location"
+                  maxlength="{{medicalContact.fields.Location.length}}"></textarea>
+            </md-input-container>
+            <md-input-container class="md-block" style="margin-bottom: 0">
+                <md-checkbox ng-model="medicalContact.attributes.EMT" aria-label="{{medicalContact.fields.EMT.alias}}"
+                ng-true-value="'1'" ng-false-value="'0'" ng-if="medicalContact.attributes.Type !== 'hospital'">
+                    {{medicalContact.fields.EMT.alias}}
+                </md-checkbox>
+                <md-checkbox ng-model="medicalContact.attributes.Helipad" aria-label="{{medicalContact.fields.Helipad.alias}}"
+                ng-true-value="'1'" ng-false-value="'0'" ng-if="medicalContact.attributes.Type === 'hospital'">
+                    {{medicalContact.fields.Helipad.alias}}
+                </md-checkbox>
+                <md-checkbox ng-model="medicalContact.attributes.BurnCenter" aria-label="{{medicalContact.fields.BurnCenter.alias}}"
+                ng-true-value="'1'" ng-false-value="'0'" ng-if="medicalContact.attributes.Type === 'hospital'">
+                    {{medicalContact.fields.BurnCenter.alias}}
+                </md-checkbox>
+            </md-input-container>
+            <md-input-container class="md-block" style="margin-bottom: 0">
+                <label>{{medicalContact.fields.Phone.alias}}:</label>
+                <input name="phone" ng-model="medicalContact.attributes.Phone"
+                       ng-pattern="/^(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9])\s*\)|([2-9]1[02-9]|[2-9][02-8]1|[2-9][02-8][02-9]))\s*(?:[.-]\s*)?)?([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?$/"
+                       maxlength="{{medicalContact.fields.Phone.length}}">
+                <div ng-messages="medicalContactForm.phone.$error">
+                    <div ng-message="pattern">Please enter a valid phone number.</div>
+                </div>
+            </md-input-container>
+            <md-input-container class="md-block" style="margin-bottom: 0">
+                <label>{{medicalContact.fields.Radio.alias}}:</label>
+                <input name="phone" ng-model="medicalContact.attributes.Radio"
+                       maxlength="{{medicalContact.fields.Radio.length}}">
+        </form>
+    </div>
+</md-content>
+

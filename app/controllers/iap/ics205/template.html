@@ -1,0 +1,80 @@
+<md-content id="ics205" layout="column" layout-padding >
+    <div ng-hide="$state.is('main.iap.ics205.contact')">
+        <div layout="row" >
+        <span flex>
+            <h2>Incident Communication Plan (ICS 205)</h2>
+        </span>
+        </div>
+        <div layout="row">
+        <span flex>
+            <h4>Incident Command/Unified Command</h4>
+            </span>
+            <span flex></span>
+            <span>
+            <md-button ui-sref=".contact({contactid: 'new', team: 'Command'})" class="md-raised md-primary">
+                Add Command
+            </md-button>
+        </span>
+        </div>
+        <md-list>
+            <md-list-item class="md-2-line"
+                          ui-sref=".contact({contactid: contact.attributes.GlobalID})"
+                          ng-repeat="contact in contacts | filter:{relationship:{attributes:{Team:'Command'}}}">
+                <div class="md-list-item-text" layout="column">
+                    <h3>{{contact.relationship.attributes.Position}}: {{ contact.attributes.Name }}, {{ contact.attributes.Organization}}</h3>
+                    <p style="max-width: 95%">
+                        Phone: {{ contact.attributes.Phone}}, Email: {{ contact.attributes.Email }}
+                    </p>
+                </div>
+            </md-list-item>
+        </md-list>
+        <div layout="row">
+        <span flex>
+            <h4>Command Staff</h4>
+            </span>
+            <span flex></span>
+            <span>
+            <md-button ui-sref=".contact({contactid: 'new', team: 'Staff'})" class="md-raised md-primary">
+                Add Staff
+            </md-button>
+        </span>
+        </div>
+        <md-list>
+            <md-list-item class="md-2-line"
+                          ui-sref=".contact({contactid: contact.attributes.GlobalID})"
+                          ng-repeat="contact in contacts | filter:{relationship:{attributes:{Team:'Staff'}}}">
+                <div class="md-list-item-text" layout="column">
+                    <h3>{{contact.relationship.attributes.Position}}: {{ contact.attributes.Name }}, {{ contact.attributes.Organization}}</h3>
+                    <p style="max-width: 95%">
+                        Phone: {{ contact.attributes.Phone}}, Email: {{ contact.attributes.Email }}
+                    </p>
+                </div>
+            </md-list-item>
+        </md-list>
+        <div layout="row">
+        <span flex>
+            <h4>Section Chiefs</h4>
+            </span>
+            <span flex></span>
+            <span>
+            <md-button ui-sref=".contact({contactid: 'new', team: 'Chief'})" class="md-raised md-primary">
+                Add Section Chief
+            </md-button>
+        </span>
+        </div>
+        <md-list>
+            <md-list-item class="md-2-line"
+                          ui-sref=".contact({contactid: contact.attributes.GlobalID})"
+                          ng-repeat="contact in contacts | filter:{relationship:{attributes:{Team:'Chief'}}}">
+                <div class="md-list-item-text" layout="column">
+                    <h3>{{contact.relationship.attributes.Position}}: {{ contact.attributes.Name }}, {{ contact.attributes.Organization}}</h3>
+                    <p style="max-width: 95%">
+                        Phone: {{ contact.attributes.Phone}}, Email: {{ contact.attributes.Email }}
+                    </p>
+                </div>
+            </md-list-item>
+        </md-list>
+    </div>
+
+    <div ui-view ng-show="$state.is('main.iap.ics205.contact')"></div>
+</md-content>

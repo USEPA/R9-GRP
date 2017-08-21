@@ -1,0 +1,136 @@
+<grp-form-buttons flex-gt-md="auto" flex
+                  title="{{contact.attributes.Name ? 'Edit Contact' : 'New Contact'}}"
+                  save="siteForm.$submitted = true; siteForm.$valid && saveContact()"
+                  delete="deleteContact($event)"
+                  hide-delete="$state.includes('main.coastal_site.contacts.contact', {contactid: 'new'})"
+                  hide-export="true"
+                  cancel="$state.go('main.coastal_site.contacts')">
+</grp-form-buttons>
+
+<div>
+    <md-autocomplete ng-if="$state.includes('main.coastal_site.contacts.contact', {contactid: 'new'})" required
+                     md-input-name="autocompleteField"
+                     md-no-cache="true"
+                     md-selected-item="selectedItem"
+                     md-selected-item-change="selectedItemChange(item)"
+                     md-search-text="contact.attributes.Name"
+                     md-items="item in queryContacts(contact.attributes.Name)"
+                     md-item-text="item.attributes.Name"
+                     md-floating-label="Name:"
+                     style="margin-bottom: -15px;">
+        <md-item-template>
+            <span md-highlight-text="searchText">{{item.attributes.Name}}, {{item.attributes.Organization}}</span>
+        </md-item-template>
+    </md-autocomplete>
+    <md-input-container class="md-block" style="margin-bottom: 0"
+                        ng-hide="$state.includes('main.coastal_site.contacts.contact', {contactid: 'new'})">
+        <label>{{contact.fields.Name.alias}}:</label>
+        <textarea type="text" name="Name" ng-model="contact.attributes.Name"
+                  maxlength="{{contact.fields.Name.length}}" ng-required="!contact.fields.Name.nullable"></textarea>
+        <div ng-messages="siteForm.Name.$error">
+            <div ng-message="required">This field is required.</div>
+        </div>
+    </md-input-container>
+    <md-input-container class="md-block" style="margin-bottom: 0">
+        <label>{{contact.fields.Title.alias}}:</label>
+        <textarea type="text" name="Title" ng-model="contact.attributes.Title"
+                  maxlength="{{contact.fields.Title.length}}" ng-required="!contact.fields.Title.nullable"></textarea>
+        <div ng-messages="siteForm.Title.$error">
+            <div ng-message="required">This field is required.</div>
+        </div>
+    </md-input-container>
+    <md-input-container class="md-block" style="margin-bottom: 0">
+        <label>{{contact.fields.Organization.alias}}:</label>
+        <textarea type="text" name="Organization" ng-model="contact.attributes.Organization"
+                  maxlength="{{contact.fields.Organization.length}}"
+                  ng-required="!contact.fields.Organization.nullable"></textarea>
+        <div ng-messages="siteForm.Organization.$error">
+            <div ng-message="required">This field is required.</div>
+        </div>
+    </md-input-container>
+    <md-input-container class="md-block">
+        <label>{{contact.fields.Organization_Type.alias}}:</label>
+        <md-select ng-model="contact.attributes.Organization_Type">
+            <md-option ng-repeat="codedValue in contact.fields.Organization_Type.domain.codedValues"
+                       value="{{codedValue.code}}">
+                {{codedValue.name}}
+            </md-option>
+        </md-select>
+    </md-input-container>
+    <md-input-container class="md-block"></md-input-container>
+    <!--this is simply adding space between the block above and bellow-->
+    <md-input-container class="md-block" style="margin-bottom: 0">
+        <label>{{contact.fields.Phone.alias}}:</label>
+        <input name="phone" ng-model="contact.attributes.Phone"
+               ng-pattern="regex.phoneFormat" maxlength="{{contact.fields.Phone.length}}"
+               ng-required="!contact.fields.Phone.nullable">
+        <div ng-messages="siteForm.phone.$error">
+            <div ng-message="pattern">{{regex.phoneMessage}}</div>
+            <div ng-message="required">This field is required.</div>
+        </div>
+    </md-input-container>
+    <md-input-container class="md-block" style="margin-bottom: 0">
+        <label>{{contact.fields.EmergencyPhone.alias}}:</label>
+        <input name="emergencyPhone" ng-model="contact.attributes.EmergencyPhone"
+               ng-pattern="regex.phoneFormat" maxlength="{{contact.fields.EmergencyPhone.length}}"
+               ng-required="!contact.fields.EmergencyPhone.nullable">
+        <div ng-messages="siteForm.emergencyPhone.$error">
+            <div ng-message="pattern">{{regex.phoneMessage}}</div>
+            <div ng-message="required">This field is required.</div>
+        </div>
+    </md-input-container>
+    <md-input-container class="md-block" style="margin-bottom: 0">
+        <label>{{contact.fields.Email.alias}}:</label>
+        <textarea type="text" name="Email" ng-model="contact.attributes.Email"
+                  ng-pattern="regex.emailFormat" maxlength="{{contact.fields.Email.length}}"
+                  ng-required="!contact.fields.Email.nullable"></textarea>
+        <div ng-messages="siteForm.Email.$error">
+            <div ng-message="pattern">{{regex.emailMessage}}</div>
+            <div ng-message="required">This field is required.</div>
+        </div>
+    </md-input-container>
+    <fieldset class="standard">
+        <legend>Contact Type</legend>
+        <div layout="row" layout-wrap flex style="align-items:center;">
+            <md-checkbox ng-checked="contact.relationship.attributes.isTrusteeType === 1"
+                         style="margin-bottom:5px;"
+                         class="md-primary"
+                         ng-click="toggleType(contact.relationship.attributes, 'isTrusteeType')">
+                Trustee
+            </md-checkbox>
+            <md-checkbox ng-checked="contact.relationship.attributes.isEntryAccessType === 1"
+                         style="margin-bottom:5px;"
+                         class="md-primary"
+                         ng-click="toggleType(contact.relationship.attributes, 'isEntryAccessType')">
+                Entry/Access
+            </md-checkbox>
+            <md-checkbox ng-checked="contact.relationship.attributes.isLandownerType === 1"
+                         style="margin-bottom:5px;"
+                         class="md-primary"
+                         ng-click="toggleType(contact.relationship.attributes, 'isLandownerType')">
+                Landowner
+            </md-checkbox>
+
+            <md-checkbox ng-checked="contact.relationship.attributes.isCulturalType === 1"
+                         style="margin-bottom:5px;"
+                         class="md-primary"
+                         ng-click="toggleType(contact.relationship.attributes, 'isCulturalType')">
+                Cultural
+            </md-checkbox>
+
+            <md-checkbox ng-checked="contact.relationship.attributes.isIntakesType === 1"
+                         style="margin-bottom:5px;"
+                         class="md-primary"
+                         ng-click="toggleType(contact.relationship.attributes, 'isIntakesType')">
+                Intakes
+            </md-checkbox>
+
+            <md-checkbox ng-checked="contact.relationship.attributes.isOtherType === 1" style="margin-bottom:5px;"
+                         class="md-primary"
+                         ng-click="toggleType(contact.relationship.attributes, 'isOtherType')">
+                Other Assistance
+            </md-checkbox>
+        </div>
+    </fieldset>
+</md-content>
+

@@ -1,0 +1,123 @@
+<grp-form-buttons flex-gt-md="auto" flex
+                  title="{{objective.attributes.Text ? 'Objective:'.concat(objective.attributes.Text) : 'New Objective'}}"
+                  save="saveObjective()"
+                  delete="deleteObjective($event)"
+                  hide-delete="$state.includes('main.iap.ics234.objective', {objectiveid: 'new'})"
+                  hide-export="true"
+                  cancel="$state.go('main.iap.ics234')"
+                  ng-show="$state.includes('main.iap.ics234.objective')">
+</grp-form-buttons>
+
+<div>
+    <md-input-container class="md-block">
+        <label>{{objective.fields.Text.alias}}:</label>
+        <textarea type="text" ng-model="objective.attributes.Text"
+                  maxlength="{{objective.fields.Text.length}}"></textarea>
+    </md-input-container>
+    <md-input-container class="md-block">
+        <label>{{objective.fields.Type.alias}}:</label>
+        <input type="text" ng-model="objective.attributes.Type"
+               maxlength="{{objective.fields.Type.length}}">
+    </md-input-container>
+</div>
+
+<md-list ng-hide="objective.attributes.GlobalID === 'new'">
+    <md-content layout="row" style="margin-top: -15px;">
+        <md-subheader class="md-no-sticky" style="padding-top: 0;" flex><h2 style="margin: 0;">Strategies, Tactics &
+            Tasks</h2></md-subheader>
+        <span flex></span>
+        <md-button class="md-raised md-primary" ng-click="addGroup()">Add Group</md-button>
+    </md-content>
+    <md-divider></md-divider>
+    <div ng-repeat="group in objective.groups | orderBy">
+        <div class="md-list-item-text sortable" layout="column">
+        <div layout="row" style="padding-top: 25px;" drag drop="dropGroup(oldPriority, newPriority)"
+             priority="{{group}}" type="group">
+            <md-icon class="material-icons drag">reorder
+                <md-tooltip md-direction="bottom">
+                    Drag to reorder
+                </md-tooltip>
+            </md-icon>
+            <md-subheader class="md-no-sticky" flex><h4 style="margin:0">Group #{{$index+1}}</h4></md-subheader>
+            <div flex></div>
+            <md-button class="md-raised md-warn" ng-click="deleteGroup(group, ev)">Delete Group</md-button>
+        </div>
+        <div layout="row">
+            <div layout="column" flex>
+                <md-list>
+                    <md-content layout="row" style="padding-bottom:0;">
+                        <md-subheader class="md-no-sticky" flex>Strategies</md-subheader>
+                        <span flex></span>
+                        <md-button class="md-icon-button md-primary" ng-click="addStrategy(group)">
+                            <md-icon class="material-icons">add</md-icon>
+                            <md-tooltip>Add Strategy</md-tooltip>
+                        </md-button>
+                    </md-content>
+
+                    <div ng-repeat="strategy in objective.strategies | filter:{attributes:{Grouping: group}} | orderBy: 'attributes.SortOrder'"
+                         layout="row" ng-init="strategy.attributes.SortOrder = $index">
+                        <div class="md-list-item-text sortable" layout="column" flex drag
+                        drop="dropStrat(oldPriority, newPriority, group)" type="strategy-{{group}}"
+                        priority="{{strategy.attributes.SortOrder}}">
+                            <div layout="row">
+                                <md-icon class="material-icons drag" style="padding: 0px; font-size:20px; margin-top: 10px;">reorder
+                                    <md-tooltip md-direction="bottom">
+                                    Drag to reorder
+                                    </md-tooltip>
+                                </md-icon>
+                            <md-input-container class="md-block" flex-gt-xs style="margin: 0;">
+                                <!--<label>Strategy #{{strategy.attributes.SortOrder = $index+1}}</label>-->
+                                <textarea ng-model="strategy.attributes.Text"
+                                          maxlength="{{strategy.fields.Text.length}}"></textarea>
+                            </md-input-container>
+                            <md-button class="md-icon-button md-warn" ng-click="deleteStrategy(strategy, $event)">
+                                <md-icon class="material-icons">close</md-icon>
+                                <md-tooltip>Delete Strategy</md-tooltip>
+                            </md-button>
+                            </div>
+                        </div>
+                    </div>
+
+                </md-list>
+            </div>
+            <div layout="column" flex>
+                <md-list>
+                    <md-content layout="row">
+                        <md-subheader class="md-no-sticky">Tactics & Tasks</md-subheader>
+                        <span flex></span>
+                        <md-button class="md-icon-button md-primary" ng-click="addTactic(group)">
+                            <md-icon class="material-icons">add</md-icon>
+                            <md-tooltip>Add Tactic/Tasks</md-tooltip>
+                        </md-button>
+                    </md-content>
+
+                    <div ng-repeat="tactic in objective.tactics | filter: {attributes: {Grouping: group}} | orderBy: 'attributes.SortOrder' "
+                         layout="row" ng-init="tactic.attributes.SortOrder = $index">
+                        <div class="md-list-item-text sortable" layout="column" flex drag
+                             drop="dropTactic(oldPriority, newPriority, group)" type="tactic-{{group}}"
+                             priority="{{tactic.attributes.SortOrder}}">
+                            <div layout="row">
+                                <md-icon class="material-icons drag" style="padding: 0px; font-size:20px; margin-top: 10px;">reorder
+                                    <md-tooltip md-direction="bottom">
+                                    Drag to reorder
+                                    </md-tooltip>
+                                </md-icon>
+                                <md-input-container class="md-block" flex-gt-xs style="margin:0;">
+                            <textarea ng-model="tactic.attributes.Text"
+                                      maxlength="{{tactic.fields.Text.length}}"></textarea>
+                                </md-input-container>
+                                <md-button class="md-icon-button md-warn" ng-click="deleteTactic(tactic, $event)"
+                                           aria-label="'Delete Tactic">
+                                    <md-icon class="material-icons">close</md-icon>
+                                    <md-tooltip>Delete Tactic/Tasks</md-tooltip>
+                                </md-button>
+                            </div>
+                        </div>
+                    </div>
+                </md-list>
+            </div>
+        </div>
+        <md-divider></md-divider>
+    </div>
+    </div>
+</md-list>

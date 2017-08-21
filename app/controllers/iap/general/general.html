@@ -1,0 +1,38 @@
+<md-content id="iapPanel" layout="column" layout-padding>
+    <grp-form-buttons title="General"
+                      save="iapForm.$submitted = true; iapForm.$valid && save()"
+                      delete="delete(IAP.plan, $event)"
+                      hide-delete="$state.includes('main.iap', {planid: 'new'})"
+                      export="export(IAP.plan)" export-loading="exportLoading"
+                      hide-export="$state.includes('main.iap', {planid: 'new'})"
+                      cancel="$state.go('main')">
+    </grp-form-buttons>
+
+    <!-- see app/controllers/site/general/general.html for example setup -->
+
+    <div>
+        <md-input-container class="md-block">
+            <label>{{IAP.plan.fields.Name.alias}}:</label>
+            <input type="text" ng-model="IAP.plan.attributes.Name" name="name"
+                   required maxlength="{{IAP.plan.fields.Name.length}}">
+            <div ng-messages="iapForm.name.$error"
+                 ng-show="iapForm.name.$dirty || iapForm.$submitted && iapForm.name.$invalid">
+                <div ng-message="required">A Name is Required!</div>
+            </div>
+        </md-input-container>
+        <md-input-container class="md-block">
+            <label>{{IAP.plan.fields.ShortName.alias}}:</label>
+            <input type="text" ng-model="IAP.plan.attributes.ShortName"
+                   maxlength="{{IAP.plan.fields.ShortName.length}}">
+        </md-input-container>
+        <md-input-container class="md-block">
+            <label>{{IAP.plan.fields.ExecutiveSummary.alias}}:</label>
+            <textarea type="text" ng-model="IAP.plan.attributes.ExecutiveSummary"
+                   maxlength="{{IAP.plan.fields.ExecutiveSummary.length}}"></textarea>
+        </md-input-container>
+        <h4 ng-hide="IAP.plan.attributes.OBJECTID === 'new'">Cover Image:</h4>
+        <attachment-view layer="IAP" object-id="IAP.plan.attributes.OBJECTID" max-attachments="1"
+                         filter-id="IAP.plan.attributes.CoverImage"></attachment-view>
+
+    </div>
+</md-content>

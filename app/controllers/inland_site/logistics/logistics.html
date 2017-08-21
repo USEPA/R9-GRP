@@ -1,0 +1,45 @@
+<md-content id="sitePanel" layout="column" layout-padding>
+
+    <grp-form-buttons title="Logistics"
+                      save="save()"
+                      delete="delete(site, $event)"
+                      export="export(site)"
+                      export-loading="exportLoading"
+                      cancel="$state.go('main')">
+    </grp-form-buttons>
+
+    <div>
+        <md-input-container class="md-block">
+            <label>{{inlandSites.site.fields.Directions.alias}}:</label>
+                    <textarea class="form-control" ng-model="inlandSites.site.attributes.Directions"
+                              maxlength="{{inlandSites.site.fields.Directions.length}}"></textarea>
+        </md-input-container>
+        <md-input-container class="md-block">
+            <label>{{inlandSites.site.fields.Land_Access.alias}}:</label>
+                    <textarea class="form-control" ng-model="inlandSites.site.attributes.Land_Access"
+                              maxlength="{{inlandSites.site.fields.Land_Access.length}}"></textarea>
+        </md-input-container>
+        <md-input-container class="md-block">
+            <label>{{inlandSites.site.fields.Facilities_StagingAreas_FieldPo.alias}}:</label>
+                    <textarea class="form-control" ng-model="inlandSites.site.attributes.Facilities_StagingAreas_FieldPo"
+                              maxlength="{{inlandSites.site.fields.Facilities_StagingAreas_FieldPo.length}}"></textarea>
+        </md-input-container>
+        <md-input-container class="md-block">
+            <label>{{inlandSites.site.fields.Communication_Issues.alias}}:</label>
+                    <textarea class="form-control" ng-model="inlandSites.site.attributes.Communication_Issues"
+                              maxlength="{{inlandSites.site.fields.Communication_Issues.length}}"></textarea>
+        </md-input-container>
+        <h4>Water Logistics</h4>
+        <md-input-container class="md-block">
+            <label>{{inlandSites.site.fields.Water_Logistics_Limitation.alias}}:</label>
+                    <textarea class="form-control" ng-model="inlandSites.site.attributes.Water_Logistics_Limitation"
+                              maxlength="{{inlandSites.site.fields.Water_Logistics_Limitation.length}}"></textarea>
+        </md-input-container>
+        <md-input-container class="md-block">
+            <label>{{inlandSites.site.fields.Water_Logistics_Launching_Loadi.alias}}:</label>
+                    <textarea class="form-control" ng-model="inlandSites.site.attributes.Water_Logistics_Launching_Loadi"
+                              maxlength="{{inlandSites.site.fields.Water_Logistics_Launching_Loadi.length}}"></textarea>
+        </md-input-container>
+
+    </div>
+</md-content>

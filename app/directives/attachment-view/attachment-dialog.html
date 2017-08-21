@@ -1,0 +1,32 @@
+<md-toolbar>
+    <div class="md-toolbar-tools">
+        <h>File Upload</h>
+        <span flex="" class="flex"></span>
+        <md-button class="md-icon-button" ng-disabled="uploading" ng-click="cancel()">
+            <i class="material-icons">close</i>
+        </md-button>
+    </div>
+</md-toolbar>
+<div layout="column" layout-fill>
+    <md-card>
+        <!--<md-card-title>-->
+        <!--<md-card-title-media>-->
+        <!--<div class="md-media-sm card-media">-->
+        <!--<img ng-src="images/76-128.png"/>-->
+        <!--</div>-->
+        <!--<h>Brows to your file</h>-->
+        <!--</md-card-title-media>-->
+        <!--</md-card-title>-->
+        <md-dialog-actions>
+            <form role="form" id="attachmentForm" class="ng-pristine ng-valid">
+                <input ng-disabled="uploading" type="file" name="attachment" id="attachmentInput"/>
+            </form>
+            <md-button class="md-raised md-primary" ng-click="uploadFile();" ng-disabled="uploading">
+                <span ng-hide="uploading">Upload</span>
+                <div layout="row" layout-sm="column" layout-align="space-around">
+                    <md-progress-circular md-mode="indeterminate" ng-show="uploading" md-diameter="25"></md-progress-circular>
+                </div>
+            </md-button>
+        </md-dialog-actions>
+    </md-card>
+</div>

@@ -1,0 +1,157 @@
+<md-content id="resourcePanel" layout="column" layout-padding>
+
+    <grp-form-buttons title="Resources"
+                      save="save()"
+                      delete="delete(coastalSites.site, $event)"
+                      export="export(coastalSites.site)"
+                      export-loading="exportLoading"
+                      cancel="$state.go('main')">
+    </grp-form-buttons>
+
+    <div>
+        <md-input-container class="md-block">
+            <label>{{coastalSites.site.fields.Shoreline_Type.alias}}:</label>
+                    <textarea class="form-control" ng-model="coastalSites.site.attributes.Shoreline_Type"
+                              maxlength="{{coastalSites.site.fields.Shoreline_Type.length}}"></textarea>
+        </md-input-container>
+
+
+        <md-input-container class="md-block">
+            <label>{{coastalSites.site.fields.Tidal_Range.alias}}:</label>
+                    <textarea class="form-control" ng-model="coastalSites.site.attributes.Tidal_Range"
+                              maxlength="{{coastalSites.site.fields.Tidal_Range.length}}"></textarea>
+        </md-input-container>
+
+        <md-input-container class="md-block">
+            <label>{{coastalSites.site.fields.Average_Current.alias}}:</label>
+                    <textarea class="form-control" ng-model="coastalSites.site.attributes.Average_Current"
+                              maxlength="{{coastalSites.site.fields.Average_Current.length}}"></textarea>
+        </md-input-container>
+
+
+        <md-input-container class="md-block">
+            <label>{{coastalSites.site.fields.Physical_Description.alias}}:</label>
+                    <textarea class="form-control" ng-model="coastalSites.site.attributes.Physical_Description"
+                              maxlength="{{coastalSites.site.fields.Physical_Description.length}}"></textarea>
+        </md-input-container>
+
+
+        <md-input-container class="md-block">
+            <label>{{coastalSites.site.fields.Site_Descrip_Comments.alias}}:</label>
+                    <textarea class="form-control" ng-model="coastalSites.site.attributes.Site_Descrip_Comments"
+                              maxlength="{{coastalSites.site.fields.Site_Descrip_Comments.length}}"></textarea>
+        </md-input-container>
+
+        <h3>Seasonal and Special Resource Concern</h3>
+
+
+        <md-input-container class="md-block">
+            <label>{{coastalSites.site.fields.Seasonal_Concern_Comments.alias}}:</label>
+                    <textarea class="form-control" ng-model="coastalSites.site.attributes.Seasonal_Concern_Comments"
+                              maxlength="{{coastalSites.site.fields.Seasonal_Concern_Comments.length}}"></textarea>
+        </md-input-container>
+
+
+        <h3>Resources of Primary Concern</h3>
+
+
+        <md-input-container class="md-block">
+            <label>{{coastalSites.site.fields.Habitat.alias}}:</label>
+            <input class="form-control" type="text" ng-model="coastalSites.site.attributes.Habitat"
+                   maxlength="{{coastalSites.site.fields.Habitat.length}}">
+        </md-input-container>
+
+        <md-input-container class="md-block">
+            <label>{{coastalSites.site.fields.Wildlife.alias}}:</label>
+            <input class="form-control" type="text" ng-model="coastalSites.site.attributes.Wildlife"
+                   maxlength="{{coastalSites.site.fields.Wildlife.length}}">
+        </md-input-container>
+
+
+        <md-input-container class="md-block">
+            <label>{{coastalSites.site.fields.Threatened_Species.alias}}:</label>
+                    <textarea class="form-control" ng-model="coastalSites.site.attributes.Threatened_Species"
+                              maxlength="{{coastalSites.site.fields.Threatened_Species.length}}"></textarea>
+        </md-input-container>
+
+
+        <md-input-container class="md-block">
+            <label>{{coastalSites.site.fields.Resources_Comments.alias}}:</label>
+                    <textarea class="form-control" ng-model="coastalSites.site.attributes.Resources_Comments"
+                              maxlength="{{coastalSites.site.fields.Resources_Comments.length}}"></textarea>
+        </md-input-container>
+
+        <h3>Cultural, Historic, Socia-Economic and Archaeological Sensitivities</h3>
+
+
+        <md-input-container class="md-block">
+            <label>{{coastalSites.site.fields.Cultural_Priority.alias}}:</label>
+                    <textarea class="form-control" ng-model="coastalSites.site.attributes.Cultural_Priority"
+                              maxlength="{{coastalSites.site.fields.Cultural_Priority.length}}"></textarea>
+        </md-input-container>
+
+
+        <md-input-container class="md-block">
+            <label>{{coastalSites.site.fields.Historic_Priority.alias}}:</label>
+                    <textarea class="form-control" ng-model="coastalSites.site.attributes.Historic_Priority"
+                              maxlength="{{coastalSites.site.fields.Historic_Priority.length}}"></textarea>
+        </md-input-container>
+
+
+        <md-input-container class="md-block">
+            <label>{{coastalSites.site.fields.Socioeconomic_Priority.alias}}:</label>
+                    <textarea class="form-control" ng-model="coastalSites.site.attributes.Socioeconomic_Priority"
+                              maxlength="{{coastalSites.site.fields.Socioeconomic_Priority.length}}"></textarea>
+        </md-input-container>
+
+
+        <md-input-container class="md-block">
+            <label>{{coastalSites.site.fields.Archaeological_Priority.alias}}:</label>
+                    <textarea class="form-control" ng-model="coastalSites.site.attributes.Archaeological_Priority"
+                              maxlength="{{coastalSites.site.fields.Archaeological_Priority.length}}"></textarea>
+        </md-input-container>
+
+
+        <md-input-container class="md-block">
+            <label>{{coastalSites.site.fields.Cultural_Comments.alias}}:</label>
+                    <textarea class="form-control" ng-model="coastalSites.site.attributes.Cultural_Comments"
+                              maxlength="{{coastalSites.site.fields.Cultural_Comments.length}}"></textarea>
+        </md-input-container>
+
+
+        <h3>Additional Site Summary Comments</h3>
+
+
+        <md-input-container class="md-block">
+            <label>{{coastalSites.site.fields.SiteSummary_Comments.alias}}:</label>
+                    <textarea class="form-control" ng-model="coastalSites.site.attributes.SiteSummary_Comments"
+                              maxlength="{{coastalSites.site.fields.SiteSummary_Comments.length}}"></textarea>
+        </md-input-container>
+
+
+        <h3>Hazards and Restrictions</h3>
+
+
+        <md-input-container class="md-block">
+            <label>{{coastalSites.site.fields.Hazards.alias}}:</label>
+                    <textarea class="form-control" ng-model="coastalSites.site.attributes.Hazards"
+                              maxlength="{{coastalSites.site.fields.Hazards.length}}"></textarea>
+        </md-input-container>
+
+
+        <md-input-container class="md-block">
+            <label>{{coastalSites.site.fields.Restrictions.alias}}:</label>
+                    <textarea class="form-control" ng-model="coastalSites.site.attributes.Restrictions"
+                              maxlength="{{coastalSites.site.fields.Restrictions.length}}"></textarea>
+        </md-input-container>
+
+
+        <md-input-container class="md-block">
+            <label>{{coastalSites.site.fields.Hazards_Comments.alias}}:</label>
+                    <textarea class="form-control" ng-model="coastalSites.site.attributes.Hazards_Comments"
+                              maxlength="{{coastalSites.site.fields.Hazards_Comments.length}}"></textarea>
+        </md-input-container>
+
+    </div>
+
+</md-content>

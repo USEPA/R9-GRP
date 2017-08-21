@@ -1,0 +1,15 @@
+<div layout="row" flex>
+    <span>
+        <h2>{{title}}</h2>
+    </span>
+    <span flex></span>
+    <span>
+        <md-button ng-click="cancel()" class="md-raised md-accent">Back</md-button>
+        <md-button ng-click="save()" class="md-raised md-primary">Save</md-button>
+        <md-button ng-click="delete(site)" ng-hide="hideDelete" class="md-raised md-warn">Delete</md-button>
+        <md-button ng-click="export(site)" ng-disabled="exportLoading" ng-hide="hideExport" class="md-raised md-accent md-hue-3">
+            Export PDF
+        </md-button>
+        <ng-transclude></ng-transclude>
+    </span>
+</div>

@@ -1,0 +1,36 @@
+<md-content id="objectivesPanel" layout="column" layout-padding>
+    <div layout="row" ng-hide="$state.includes('**.category')">
+        <span flex>
+            <h2>Incident Objectives (ICS 202)</h2>
+        </span>
+        <span flex></span>
+        <span>
+            <md-button ng-click="addCategory()" class="md-raised md-primary">Add Category</md-button>
+        </span>
+    </div>
+    <md-list ng-hide="$state.includes('**.category')">
+        <md-list-item class="md-2-line" ng-repeat="category in categories | orderBy: 'attributes.SortOrder'"
+                      ng-init="category.attributes.SortOrder = $index" style="padding:0">
+            <div class="md-list-item-text sortable" layout="column" drag drop="drop(oldPriority, newPriority)"
+                 priority="{{category.attributes.SortOrder}}">
+                <div layout="row">
+                    <md-icon class="material-icons drag">reorder
+                        <md-tooltip md-direction="bottom">
+                            Drag to reorder
+                        </md-tooltip>
+                    </md-icon>
+                    <div layout="column" flex="85">
+                        <h3>Category #{{ category.attributes.SortOrder+1 }}: {{ category.attributes.Category }}</h3>
+                        <p ng-repeat="objective in category.objectives | orderBy: 'attributes.ObjectiveNumber'">
+                            Objective #{{ objective.attributes.ObjectiveNumber }}: {{ objective.attributes.Objective }}
+                        </p>
+                    </div>
+                    <span flex></span>
+                    <md-icon ng-click="viewCategory(category)" class="material-icons edit">mode_edit</md-icon>
+                </div>
+            </div>
+            <md-divider></md-divider>
+        </md-list-item>
+    </md-list>
+    <div ui-view ng-show="$state.includes('**.category')"></div>
+</md-content>

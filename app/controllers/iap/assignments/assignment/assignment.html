@@ -1,0 +1,71 @@
+<grp-form-buttons flex-gt-md="auto" flex
+                  title="{{assignment.attributes.Agency ? 'Assignment List for '.concat(assignment.attributes.Agency) : 'New Assignment List'}}"
+                  save="saveAssignment()"
+                  delete="deleteAssignment($event)"
+                  hide-delete="$state.includes('main.iap.assignments.assignment', {assignmentid: 'new'})"
+                  hide-export="true"
+                  cancel="$state.go('main.iap.assignments')"
+                  ng-hide="!$state.is('main.iap.assignments.assignment')">
+</grp-form-buttons>
+<md-content id="assignmentPanel" layout="column" layout-padding
+            ng-hide="$state.includes('main.iap.assignments.assignment.contact') || $state.includes('main.iap.assignments.assignment.resource')">
+    <md-input-container class="md-block">
+        <label>{{assignment.fields.Agency.alias}}:</label>
+        <input type="text" ng-model="assignment.attributes.Agency"
+               maxlength="{{assignment.fields.Agency.length}}">
+    </md-input-container>
+
+    <!-- todo: need a better list of contacts -->
+    <md-list ng-show="assignment.attributes.GlobalID !== 'new' && $state.is('main.iap.assignments.assignment')">
+        <md-content layout="row" style="padding-bottom: 25px;">
+            <md-subheader style="padding-top: 0" flex>Contacts</md-subheader>
+            <span flex></span>
+            <md-button class="md-raised md-primary" ng-click="$state.go('main.iap.assignments.assignment.contact', {contactid: 'new'})">Add Contact</md-button>
+        </md-content>
+        <md-list-item class="md-2-line" ng-repeat="contact in assignment.contacts"
+                      ng-click="$state.go('main.iap.assignments.assignment.contact', {contactid: contact.attributes.GlobalID})">
+            <div class="md-list-item-text" layout="column">
+                <h3>{{ contact.attributes.Name }}</h3>
+            </div>
+            <md-divider ng-if="$index+1 !== assignment.contacts.length"></md-divider>
+        </md-list-item>
+    </md-list>
+    <br/>
+    <md-input-container class="md-block">
+        <label>{{assignment.fields.GeneralResponsibilities.alias}}:</label>
+        <textarea type="text" ng-model="assignment.attributes.GeneralResponsibilities"
+               maxlength="{{assignment.fields.GeneralResponseibilities.length}}"></textarea>
+    </md-input-container>
+    <md-input-container class="md-block">
+        <label>{{assignment.fields.IncidentAssignments.alias}}:</label>
+        <textarea type="text" ng-model="assignment.attributes.IncidentAssignments"
+               maxlength="{{assignment.fields.IncidentAssignments.length}}"></textarea>
+    </md-input-container>
+    <!-- todo: need a better list of contacts -->
+    <md-list ng-show="assignment.attributes.GlobalID !== 'new' && $state.is('main.iap.assignments.assignment')">
+        <md-content layout="row" style="padding-bottom: 25px;">
+            <md-subheader style="padding-top: 0" flex>Resource Summary</md-subheader>
+            <span flex></span>
+            <md-button class="md-raised md-primary" ng-click="$state.go('main.iap.assignments.assignment.resource', {resourceid: 'new'})">Add Resource</md-button>
+        </md-content>
+        <md-list-item class="md-2-line" ng-repeat="resource in assignment.resources"
+                      ng-click="$state.go('main.iap.assignments.assignment.resource', {resourceid: resource.attributes.GlobalID})">
+            <div class="md-list-item-text" layout="column">
+                <h3>{{ resource.attributes.Description }}</h3>
+            </div>
+            <md-divider ng-if="$index+1 !== assignment.resources.length"></md-divider>
+        </md-list-item>
+    </md-list>
+    <br/>
+    <md-input-container class="md-block">
+        <label>{{assignment.fields.SpecialInstructions.alias}}:</label>
+        <textarea type="text" ng-model="assignment.attributes.SpecialInstructions"
+               maxlength="{{assignment.fields.SpecialInstructions.length}}"></textarea>
+    </md-input-container>
+    <md-input-container class="md-block">
+        <label>{{assignment.fields.AdditionalInfo.alias}}:</label>
+        <textarea type="text" ng-model="assignment.attributes.AdditionalInfo"
+               maxlength="{{assignment.fields.AdditionalInfo.length}}"></textarea>
+    </md-input-container>
+</md-content>
+<div ui-view ng-show="$state.includes('main.iap.assignments.assignment.contact') || $state.includes('main.iap.assignments.assignment.resource')"></div>

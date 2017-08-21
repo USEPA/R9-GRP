@@ -1,0 +1,39 @@
+<grp-toolbar state="state" alt-search="search(searchText)"></grp-toolbar>
+<md-content>
+    <md-table-container>
+        <table md-table md-row-select multiple ng-model="selected" md-progress="promise">
+            <thead md-head md-order="query.order" md-on-reorder="search">
+            <tr md-row>
+                <th md-column md-order-by="attributes.Name">Name</th>
+                <th md-column md-order-by="attributes.Title">Title</th>
+                <th md-column md-order-by="attributes.Organization">Organization</th>
+                <th md-column md-order-by="attributes.Organization_Type">Organization Type</th>
+                <th md-column md-order-by="attributes.Email">Email</th>
+                <th md-column md-order-by="attributes.Phone">Phone</th>
+                <th md-column md-order-by="attributes.EmergencyPhone">EmergencyPhone</th>
+            </tr>
+            </thead>
+            <tbody md-body>
+            <tr md-row md-select="contact" ng-repeat="contact in contacts" ng-click="edit(contact, $event)">
+                <td md-cell ng-click="edit">{{contact.attributes.Name}}</td>
+                <td md-cell>{{contact.attributes.Title}}</td>
+                <td md-cell>{{contact.attributes.Organization}}</td>
+                <td md-cell>{{contact.attributes.Organization_Type |
+                    display:contact.fields.Organization_Type.domain.codedValues }}
+                </td>
+                <td md-cell>{{contact.attributes.Email}}</td>
+                <td md-cell>{{contact.attributes.Phone}}</td>
+                <td md-cell>{{contact.attributes.EmergencyPhone}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </md-table-container>
+    <md-table-pagination md-limit="query.limit" md-limit-options="[25, 50, 100, 200]" md-page="query.page"
+                         md-page-select="true" md-on-paginate="paginate"
+                         md-total="{{contacts.total}}"></md-table-pagination>
+</md-content>
+<md-button class="md-fab md-mini md-primary" aria-label="Delete" ng-click="deleteSelected($event)"
+           style="position: absolute; bottom: 30px; right: 40px; line-height: inherit !important;">
+    <md-icon class="material-icons">delete</md-icon>
+    <md-tooltip>Delete Select Contact(s)</md-tooltip>
+</md-button>

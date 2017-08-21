@@ -1,0 +1,90 @@
+<md-content id="medicalPanel" layout="column" layout-padding ng-hide="$state.includes('main.iap.medical.contact')">
+
+    <grp-form-buttons flex-gt-md="auto" flex
+                      title="Medical Plan"
+                      save="saveMedical()"
+                      delete=""
+                      hide-delete="true"
+                      hide-export="true"
+                      cancel="$state.go('main.iap.general')">
+    </grp-form-buttons>
+    <div>
+        <div layout="row" ng-hide="$state.includes('main.iap.medical.contact')">
+        <span flex>
+            <h4>First Aid Stations</h4>
+            </span>
+            <span flex></span>
+        <span>
+            <md-button ng-click="addContact('firstaid')" class="md-raised md-primary">
+                Add First Aid Station
+            </md-button>
+        </span>
+        </div>
+        <md-list ng-hide="$state.includes('main.iap.medical.contact')">
+            <md-list-item class="md-2-line"
+                          ng-click="viewContact(medicalContact)"
+                          ng-repeat="medicalContact in medicalContacts | filter:{attributes:{Type:'firstaid'}}">
+                <div class="md-list-item-text" layout="column">
+                    <h3>{{ medicalContact.attributes.Name }}, {{ medicalContact.attributes.Phone }}</h3>
+                    <p style="max-width: 95%">
+                        Phone: {{ medicalContact.attributes.Location}}, Organization: {{ medicalContact.attributes.Radio }}
+                    </p>
+                </div>
+            </md-list-item>
+        </md-list>
+
+        <div layout="row" ng-hide="$state.includes('main.iap.medical.contact')">
+        <span flex>
+            <h4>Transportation (Ground and/or Ambulance Services)</h4>
+            </span>
+            <span flex></span>
+        <span>
+            <md-button ng-click="addContact('transportation')" class="md-raised md-primary">
+                Add Transportation
+            </md-button>
+        </span>
+        </div>
+        <md-list ng-hide="$state.includes('main.iap.medical.contact')">
+            <md-list-item class="md-2-line"
+                          ng-click="viewContact(medicalContact)"
+                          ng-repeat="medicalContact in medicalContacts | filter:{attributes:{Type: 'transportation'}}">
+                <div class="md-list-item-text" layout="column">
+                    <h3>{{ medicalContact.attributes.Name }}, {{ medicalContact.attributes.Phone }}</h3>
+                    <p style="max-width: 95%">
+                        Phone: {{ medicalContact.attributes.Location}}, Organization: {{ medicalContact.attributes.Radio }}
+                    </p>
+                </div>
+            </md-list-item>
+        </md-list>
+        <div layout="row" ng-hide="$state.includes('main.iap.medical.contact')">
+        <span flex>
+            <h4>Hospitals</h4>
+            </span>
+            <span flex></span>
+        <span>
+            <md-button ng-click="addContact('hospital')" class="md-raised md-primary">
+                Add Hospitals
+            </md-button>
+        </span>
+        </div>
+        <md-list ng-hide="$state.includes('main.iap.medical.contact')">
+            <md-list-item class="md-2-line"
+                          ng-click="viewContact(medicalContact)"
+                          ng-repeat="medicalContact in medicalContacts | filter:{attributes:{Type: 'hospital'}}">
+                <div class="md-list-item-text" layout="column">
+                    <h3>{{ medicalContact.attributes.Name }}, {{ medicalContact.attributes.Location }}</h3>
+                    <p style="max-width: 95%">
+                        Phone: {{ medicalContact.attributes.Phone}}, Organization: {{ medicalContact.attributes.Radio }}
+                    </p>
+                </div>
+            </md-list-item>
+        </md-list>
+        <md-input-container class="md-block" style="margin-bottom: 0">
+            <label>{{IAP.plan.fields.SpecialMedicalProcedures.alias}}:</label>
+        <textarea type="text" ng-model="IAP.plan.attributes.SpecialMedicalProcedures"
+                  maxlength="{{IAP.plan.fields.SpecialMedicalProcedures.length}}"></textarea>
+        </md-input-container>
+    </div>
+
+</md-content>
+<div ui-view ng-show="$state.includes('main.iap.medical.contact')"></div>

@@ -1,0 +1,24 @@
+<md-content id="contactPanel" layout="column" layout-padding>
+    <div layout="row" ng-hide="$state.includes('main.iap.assignments.assignment')">
+        <span flex>
+            <h2>Assignment Lists</h2>
+        </span>
+        <span flex></span>
+        <span>
+            <md-button ng-click="addAssignment()" class="md-raised md-primary">
+                Add Assignment List
+            </md-button>
+        </span>
+    </div>
+    <!-- todo: need a better list of assignments -->
+    <md-list ng-hide="$state.includes('main.iap.assignments.assignment')">
+        <md-list-item class="md-2-line"
+                      ng-click="viewAssignment(assignment)"
+                      ng-repeat="assignment in assignments">
+            <div class="md-list-item-text">
+                <h3>{{ assignment.attributes.Agency }}</h3>
+            </div>
+        </md-list-item>
+    </md-list>
+    <div ui-view ng-show="$state.includes('main.iap.assignments.assignment')"></div>
+</md-content>

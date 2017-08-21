@@ -1,0 +1,45 @@
+<md-content layout-gt-xs="column" layout="row" style="min-height: 200px;" flex id="mapDiv">
+    <style>
+        .md-scale.md-is-open .md-fab-action-item {
+            transform: scale(1);
+        }
+    </style>
+    <div id="zoomButtons" style="z-index: 99999; position: absolute; top:15px; left: 10px;">
+        <md-button ng-click="map.zoomIn()" class="md-raised md-primary md-icon-button">
+            <md-icon>add</md-icon>
+        </md-button>
+        <br/>
+        <md-button ng-click="map.zoomOut()" class="md-raised md-primary md-icon-button" style="margin-top:12px">
+            <md-icon>remove</md-icon>
+        </md-button>
+        <br/>
+
+        <md-button ng-click="map.resetExtent()" class="md-raised md-primary md-icon-button" style="margin-top:12px">
+            <md-icon>home</md-icon>
+        </md-button>
+    </div>
+    <md-fab-speed-dial md-direction="up" class="md-fling" ng-cloak
+                       style="position: absolute; left: 10px; bottom: 30px;">
+        <md-fab-trigger>
+            <md-button class="md-fab md-raised md-primary" aria-label="Basemap Switcher"
+                       style="width: 45px; height: 45px;">
+                <md-icon>layers</md-icon>
+                <md-tooltip md-direction="right" md-visible="tooltipVisible"
+                            md-autohide="false">
+                    Switch Basemap
+                </md-tooltip>
+            </md-button>
+        </md-fab-trigger>
+        <md-fab-actions>
+            <div ng-repeat="basemap in basemaps">
+                <md-button ng-click="map.switchBasemap(basemap)" aria-label="{{basemap.title}}" class="md-fab md-raised md-mini">
+                    <img ng-src="{{basemap.thumbnailUrl}}" style="margin-left: -10px;"/>
+                    <md-tooltip md-direction="right" md-visible="tooltipVisible"
+                                md-autohide="false">
+                        {{basemap.title}}
+                    </md-tooltip>
+                </md-button>
+            </div>
+        </md-fab-actions>
+    </md-fab-speed-dial>
+</md-content>

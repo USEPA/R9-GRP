@@ -1,0 +1,83 @@
+<md-dialog>
+    <form ng-cloak name="contactForm">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Edit Contact</h2>
+            </div>
+        </md-toolbar>
+        <md-dialog-content style="width:500px;">
+            <div class="md-dialog-content">
+                <md-input-container class="md-block" style="margin-bottom: 0">
+                    <label>{{contact.fields.Name.alias}}:</label>
+                    <textarea type="text" name="Name" ng-model="contact.attributes.Name"
+                              maxlength="{{contact.fields.Name.length}}" ng-required="!contact.fields.Name.nullable"></textarea>
+                    <div ng-messages="contactForm.Name.$error">
+                        <div ng-message="required">This field is required.</div>
+                    </div>
+                </md-input-container>
+                <md-input-container class="md-block" style="margin-bottom: 0">
+                    <label>{{contact.fields.Title.alias}}:</label>
+                    <textarea type="text" name="Title" ng-model="contact.attributes.Title"
+                              maxlength="{{contact.fields.Title.length}}" ng-required="!contact.fields.Title.nullable"></textarea>
+                    <div ng-messages="contactForm.Title.$error">
+                        <div ng-message="required">This field is required.</div>
+                    </div>
+                </md-input-container>
+                <md-input-container class="md-block" style="margin-bottom: 0">
+                    <label>{{contact.fields.Organization.alias}}:</label>
+                    <textarea type="text" name="Organization" ng-model="contact.attributes.Organization"
+                              maxlength="{{contact.fields.Organization.length}}"
+                              ng-required="!contact.fields.Organization.nullable"></textarea>
+                    <div ng-messages="contactForm.Organization.$error">
+                        <div ng-message="required">This field is required.</div>
+                    </div>
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <label>{{contact.fields.Organization_Type.alias}}:</label>
+                    <md-select ng-model="contact.attributes.Organization_Type">
+                        <md-option ng-repeat="codedValue in contact.fields.Organization_Type.domain.codedValues"
+                                   value="{{codedValue.code}}">
+                            {{codedValue.name}}
+                        </md-option>
+                    </md-select>
+                </md-input-container>
+                <md-input-container class="md-block"></md-input-container><!--this is simply adding space between the block above and bellow-->
+                <md-input-container class="md-block" style="margin-bottom: 0">
+                    <label>{{contact.fields.Phone.alias}}:</label>
+                    <input name="phone" ng-model="contact.attributes.Phone"
+                           ng-pattern="regex.phoneFormat" maxlength="{{contact.fields.Phone.length}}"
+                           ng-required="!contact.fields.Phone.nullable">
+                    <div ng-messages="contactForm.phone.$error">
+                        <div ng-message="pattern">{{regex.phoneMessage}}</div>
+                        <div ng-message="required">This field is required.</div>
+                    </div>
+                </md-input-container>
+                <md-input-container class="md-block" style="margin-bottom: 0">
+                    <label>{{contact.fields.EmergencyPhone.alias}}:</label>
+                    <input name="emergencyPhone" ng-model="contact.attributes.EmergencyPhone"
+                           ng-pattern="regex.phoneFormat" maxlength="{{contact.fields.EmergencyPhone.length}}"
+                           ng-required="!contact.fields.EmergencyPhone.nullable">
+                    <div ng-messages="contactForm.emergencyPhone.$error">
+                        <div ng-message="pattern">{{regex.phoneMessage}}</div>
+                        <div ng-message="required">This field is required.</div>
+                    </div>
+                </md-input-container>
+                <md-input-container class="md-block" style="margin-bottom: 0">
+                    <label>{{contact.fields.Email.alias}}:</label>
+                    <textarea type="text" name="Email" ng-model="contact.attributes.Email"
+                              ng-pattern="regex.emailFormat" maxlength="{{contact.fields.Email.length}}"
+                              ng-required="!contact.fields.Email.nullable"></textarea>
+                    <div ng-messages="contactForm.Email.$error">
+                        <div ng-message="pattern">{{regex.emailMessage}}</div>
+                        <div ng-message="required">This field is required.</div>
+                    </div>
+                </md-input-container>
+            </div>
+            <div layout="row">
+                <span flex></span>
+                <md-button ng-click="cancel()" class="md-raised md-accent">Back</md-button>
+                <md-button ng-click="contactForm.$submitted = true; contactForm.$valid && save()" class="md-raised md-primary">Save</md-button>
+            </div>
+        </md-dialog-content>
+    </form>
+</md-dialog>

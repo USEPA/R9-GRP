@@ -1,0 +1,30 @@
+<grp-header></grp-header>
+<grp-toolbar state="state" alt-search="search(searchText)"></grp-toolbar>
+<md-content class="md-padding" layout="row" layout-wrap>
+    <div flex="100" flex-gt-sm="50" flex-gt-md="33" ng-repeat="item in items">
+        <md-card>
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline"><a style="cursor: pointer" ng-click="load(item)">{{item.title}}</a></span>
+                    <span class="md-subhead">{{item.snippet}}</span>
+                </md-card-title-text>
+                <md-card-title-media>
+                    <div class="md-medium-md card-media">
+                        <img style="width:200px; height:133px;" ng-src="{{item.thumbnailUrl}}"/>
+                    </div>
+                </md-card-title-media>
+            </md-card-title>
+            <md-card-actions layout="row" layout-align="end center">
+                <md-button target="_blank" href="https://epa.maps.arcgis.com/home/item.html?id={{item.id}}">Details</md-button>
+                <md-button ng-click="load(item)">
+                    <span ng-hide="loading[item.id]">Load</span>
+                    <div layout="row" layout-sm="column" layout-align="space-around">
+                        <md-progress-circular md-mode="indeterminate" ng-if="loading[item.id]" md-diameter="25"></md-progress-circular>
+                    </div></md-button>
+            </md-card-actions>
+        </md-card>
+    </div>
+    <div flex="100" layout="column" ng-show="nextParams !== undefined && nextParams.start !== -1">
+    <md-button class="md-primary md-button md-raised" ng-click="loadMore()">Load More</md-button>
+    </div>
+</md-content>

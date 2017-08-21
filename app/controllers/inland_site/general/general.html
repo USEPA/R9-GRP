@@ -1,0 +1,136 @@
+<md-content id="sitePanel" layout="column" layout-padding>
+
+    <grp-form-buttons title="General"
+                      save="siteForm.$submitted = true; siteForm.$valid && save()"
+                      delete="delete(inlandSites.site, $event)"
+                      hide-delete="$state.includes('main.inland_site', {siteid: 'new'})"
+                      export="export(inlandSites.site)" export-loading="exportLoading"
+                      hide-export="$state.includes('main.inland_site', {siteid: 'new'})"
+                      cancel="$state.go('main')">
+    </grp-form-buttons>
+
+    <div>
+        <md-input-container class="md-block">
+            <label>{{inlandSites.site.fields.Name.alias}}:</label>
+            <input type="text" ng-model="inlandSites.site.attributes.Name" name="name"
+                   required maxlength="{{inlandSites.site.fields.Name.length}}">
+            <div ng-messages="siteForm.name.$error"
+                 ng-show="siteForm.name.$dirty || siteForm.$submitted && siteForm.name.$invalid">
+                <div ng-message="required">A Name is Required!</div>
+            </div>
+        </md-input-container>
+
+        <md-input-container class="md-block">
+            <label>{{inlandSites.site.fields.Other_Name.alias}}:</label>
+            <input type="text" ng-model="inlandSites.site.attributes.Other_Name" ng-required="!inlandSites.site.fields.Other_Name.nullable"
+                   maxlength="{{inlandSites.site.fields.Other_Name.length}}">
+        </md-input-container>
+
+        <md-input-container>
+            <label>{{inlandSites.site.fields.Site_ID.alias}}:</label>
+            <input type="text" ng-model="inlandSites.site.attributes.Site_ID"
+                   ng-required="!inlandSites.site.fields.Site_ID.nullable"
+                   maxlength="{{inlandSites.site.fields.Site_ID.length}}">
+        </md-input-container>
+        <md-input-container>
+            <label>{{inlandSites.site.fields.USGS_Quad_Num.alias}}:</label>
+            <input type="text" ng-model="site.attributes.USGS_Quad_Num"
+                   maxlength="{{inlandSites.site.fields.USGS_Quad_Num.length}}">
+        </md-input-container>
+        <md-input-container>
+            <label>{{inlandSites.site.fields.USGS_Quad_Name.alias}}:</label>
+            <input type="text" ng-model="site.attributes.USGS_Quad_Name"
+                   maxlength="{{inlandSites.site.fields.USGS_Quad_Name.length}}">
+        </md-input-container>
+        <md-input-container>
+            <label>{{inlandSites.site.fields.GRP_Map_No.alias}}:</label>
+            <input type="text" ng-model="inlandSites.site.attributes.GRP_Map_No "
+                   maxlength="{{inlandSites.site.fields.GRP_Map_No.length}}">
+        </md-input-container>
+        <md-input-container>
+            <label>{{inlandSites.site.fields.Access_Agreement.alias}}:</label>
+            <input type="text" ng-model="inlandSites.site.attributes.Access_Agreement"
+                   maxlength="{{inlandSites.site.fields.Access_Agreement.length}}">
+        </md-input-container>
+        <md-input-container>
+            <label>{{inlandSites.site.fields.General_Location.alias}}:</label>
+            <input type="text" ng-model="inlandSites.site.attributes.General_Location"
+                   maxlength="{{inlandSites.site.fields.General_Location.length}}">
+        </md-input-container>
+        <md-input-container>
+            <label>{{inlandSites.site.fields.Access_Crossing.alias}}:</label>
+            <input type="text" ng-model="inlandSites.site.attributes.Access_Crossing"
+                   maxlength="{{inlandSites.site.fields.Access_Crossing.length}}">
+        </md-input-container>
+        <md-input-container>
+            <label>{{inlandSites.site.fields.River_Miles.alias}}:</label>
+            <input type="text" ng-model="inlandSites.site.attributes.River_Miles"
+                   maxlength="{{inlandSites.site.fields.River_Miles.length}}">
+        </md-input-container>
+        <md-input-container>
+            <label>{{inlandSites.site.fields.RR_Mile_Marker.alias}}:</label>
+            <input type="text" ng-model="inlandSites.site.attributes.RR_Mile_Marker"
+                   maxlength="{{inlandSites.site.fields.RR_Mile_Marker.length}}">
+        </md-input-container>
+        <md-input-container>
+            <label>{{inlandSites.site.fields.Highway_Milepost.alias}}:</label>
+            <input type="text" ng-model="site.attributes.Highway_Milepost"
+                   maxlength="{{inlandSites.site.fields.Highway_Milepost.length}}">
+        </md-input-container>
+<br/>
+        <md-input-container>
+            <label>Latitude:</label>
+            <input class="form-control" type="text" ng-model="inlandSites.site.coordinates.y">
+        </md-input-container>
+
+        <md-input-container>
+            <label>Longitude:</label>
+            <input class="form-control" type="text" ng-model="inlandSites.site.coordinates.x">
+        </md-input-container>
+        <h3>Site Description</h3>
+        <md-input-container class="md-block">
+            <label>{{inlandSites.site.fields.Physical_Description.alias}}:</label>
+            <textarea class="form-control" type="text" ng-model="inlandSites.site.attributes.Physical_Description"
+                   maxlength="{{inlandSites.site.fields.Physical_Description.length}}"></textarea>
+        </md-input-container>
+
+        <md-input-container class="md-block">
+            <label>{{inlandSites.site.fields.Waterway_Characteristics.alias}}:</label>
+            <input class="form-control" type="text" ng-model="inlandSites.site.attributes.Waterway_Characteristics"
+                   maxlength="{{inlandSites.site.fields.Waterway_Characteristics.length}}">
+        </md-input-container>
+
+        <md-input-container class="md-block">
+            <label>{{inlandSites.site.fields.Water_Width_and_Depths.alias}}:</label>
+            <input class="form-control" type="text" ng-model="inlandSites.site.attributes.Water_Width_and_Depths"
+                   maxlength="{{inlandSites.site.fields.Water_Width_and_Depths.length}}">
+        </md-input-container>
+
+        <md-input-container class="md-block">
+            <label>{{inlandSites.site.fields.Gaging_Station_Link.alias}}:</label>
+
+            <input class="form-control" type="text" ng-model="inlandSites.site.attributes.Gaging_Station_Link"
+                   maxlength="{{inlandSites.site.fields.Gaging_Station_Link.length}}">
+        </md-input-container>
+
+
+        <md-input-container class="md-block">
+            <label>{{inlandSites.site.fields.Gaging_Station_Contact.alias}}:</label>
+            <input class="form-control" type="text" ng-model="inlandSites.site.attributes.Gaging_Station_Contact"
+                   maxlength="{{inlandSites.site.fields.Gaging_Station_Contact.length}}">
+        </md-input-container>
+
+        <md-input-container class="md-block">
+            <label>{{inlandSites.site.fields.Max_Current.alias}}:</label>
+            <input class="form-control" type="number" ng-model="inlandSites.site.attributes.Max_Current"
+                   maxlength="{{inlandSites.site.fields.Max_Current.length}}">
+        </md-input-container>
+
+        <md-input-container class="md-block">
+            <label>{{inlandSites.site.fields.Managed_Area.alias}}:</label>
+            <input class="form-control" type="text" ng-model="inlandSites.site.attributes.Managed_Area"
+                   maxlength="{{inlandSites.site.fields.Managed_Area.length}}">
+        </md-input-container>
+    </div>
+
+</md-content>

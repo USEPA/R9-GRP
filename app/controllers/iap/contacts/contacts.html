@@ -1,0 +1,27 @@
+<md-content id="contactPanel" layout="column" layout-padding>
+    <div layout="row" ng-hide="$state.includes('main.iap.contacts.contact')">
+        <span flex>
+            <h2>Contact List</h2>
+        </span>
+        <span flex></span>
+        <span>
+            <md-button ng-click="$state.go('main.iap.contacts.contact', {contactid: 'new'})" class="md-raised md-primary">
+                Add Contact
+            </md-button>
+        </span>
+    </div>
+    <!-- todo: need a better list of contacts -->
+    <md-list ng-hide="$state.includes('main.iap.contacts.contact')">
+        <md-list-item class="md-2-line"
+                      ng-click="$state.go('main.iap.contacts.contact', {contactid: contact.attributes.GlobalID})"
+                      ng-repeat="contact in contacts">
+            <div class="md-list-item-text" layout="column">
+                <h3>{{ contact.attributes.Name }}, {{ contact.attributes.Title }}</h3>
+                <p style="max-width: 95%">
+                    Phone: {{ contact.attributes.Phone}}, Organization: {{ contact.attributes.Organization }}
+                </p>
+            </div>
+        </md-list-item>
+    </md-list>
+    <div ui-view ng-show="$state.includes('main.iap.contacts.contact')"></div>
+</md-content>

@@ -1,0 +1,56 @@
+<grp-form-buttons flex-gt-md="auto" flex title="{{strategy.attributes.Name ? 'Strategy:'.concat(strategy.attributes.Name) : 'New Strategy'}}"
+                  save="saveStrategy()"
+                  delete="deleteStrategy($event)"
+                  hide-delete="$state.includes('main.coastal_site.strategies.strategy', {strategyid: 'new'})"
+                  hide-export="true"
+                  cancel="$state.go('main.coastal_site.strategies')"
+                  ng-hide="$state.includes('main.coastal_site.strategies.strategy.boom')">
+</grp-form-buttons>
+
+<div ng-hide="$state.includes('main.coastal_site.strategies.strategy.boom')">
+    <md-input-container class="md-block">
+        <label>{{strategy.fields.Name.alias}}:</label>
+        <input type="text" ng-model="strategy.attributes.Name"
+               maxlength="{{strategy.fields.Name.length}}">
+    </md-input-container>
+
+    <md-input-container class="md-block" style="margin-bottom: 0">
+        <label>{{strategy.fields.Objective.alias}}:</label>
+        <textarea type="text" ng-model="strategy.attributes.Objective"
+               maxlength="{{strategy.fields.Objective.length}}"></textarea>
+    </md-input-container>
+
+    <md-input-container class="md-block" style="margin-bottom: 0">
+        <label>{{strategy.fields.Implementation.alias}}:</label>
+        <textarea type="text" ng-model="strategy.attributes.Implementation"
+               maxlength="{{strategy.fields.Implementation.length}}"></textarea>
+    </md-input-container>
+</div>
+
+<md-list ng-hide="$state.includes('main.coastal_site.strategies.strategy.boom') || !strategy.attributes.GlobalID">
+    <md-content layout="row">
+        <md-subheader class="md-no-sticky" style="padding-top: 0" flex>Booms</md-subheader>
+        <span flex></span>
+        <md-button ng-click="$state.go('main.coastal_site.strategies.strategy.boom', {boomid: 'new'})" class="md-raised md-primary">Add Boom</md-button>
+    </md-content>
+
+
+    <md-list-item class="md-2-line"
+                  ng-click="$state.go('main.coastal_site.strategies.strategy.boom', {boomid: boom.attributes.GlobalID})"
+                  ng-repeat="boom in strategy.boom.features"
+                  ng-mouseenter="highlightBoom(boom)"
+                  ng-mouseleave="removeBoomHighlight(boom)">
+        <div class="md-list-item-text" layout="column">
+            <h4>Boom Type: {{ boom.attributes.Boom_Type | boomType:strategy.boom.fields.Boom_Type.domain.codedValues}}</h4>
+            <p>Booming Method: {{ boom.attributes.Boom_Method }}</p>
+            <!--<p>Objective: {{ boom.attributes.Strat_1_Objective }}</p>-->
+            <!--<p>{{ item.notes }}</p>-->
+            <md-switch class="md-primary md-secondary" ng-model="boom.visible"
+                       ng-change="toggleBoom(boom.attributes.GlobalID, boom.visible)"
+                       aria-label="Turn layer on/off"></md-switch>
+        </div>
+        <md-divider></md-divider>
+    </md-list-item>
+</md-list>
+<div ng-show="$state.includes('main.coastal_site.strategies.strategy.boom')" ui-view></div>
+

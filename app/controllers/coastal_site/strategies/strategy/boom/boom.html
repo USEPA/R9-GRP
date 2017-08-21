@@ -1,0 +1,77 @@
+<md-content id="sitePanel" layout="column" layout-padding>
+
+    <grp-form-buttons layout="row" flex-gt-md="auto" flex title="Boom" save="saveBoom()"
+                      delete="deleteBoom($event)"
+                      hide-delete="$state.includes('main.coastal_site.strategies.strategy.boom', {boomid: 'new'})"
+                      cancel="$state.go('main.coastal_site.strategies.strategy', {strategyid: strategy.attributes.GlobalID})"
+                      hide-export="true">
+    </grp-form-buttons>
+
+    <div>
+        <md-input-container class="md-block">
+            <label>{{boom.fields.Boom_Type.alias}}:</label>
+            <md-select ng-model="boom.attributes.Boom_Type">
+                <md-option ng-repeat="codedValue in boom.fields.Boom_Type.domain.codedValues" value="{{codedValue.code}}">
+                    {{codedValue.name}}
+                </md-option>
+            </md-select>
+        </md-input-container>
+
+        <md-input-container class="md-block"></md-input-container><!--this is simply adding space between the block above and bellow-->
+
+        <md-input-container class="md-block">
+            <label>{{boom.fields.Boom_Length.alias}}:</label>
+            <input type="number" ng-model="boom.attributes.Boom_Length"
+                   maxlength="{{boom.fields.Boom_Length.length}}">
+        </md-input-container>
+
+        <md-input-container class="md-block">
+            <label>{{boom.fields.Boom_Method.alias}}:</label>
+            <input type="text" ng-model="boom.attributes.Boom_Method"
+                   maxlength="{{boom.fields.Boom_Method.length}}">
+        </md-input-container>
+
+        <md-input-container class="md-block">
+            <label>{{boom.fields.Boom_Boat.alias}}:</label>
+            <input type="number" ng-model="boom.attributes.Boom_Boat"
+                   maxlength="{{boom.fields.Boom_Boat.length}}">
+        </md-input-container>
+
+        <md-input-container class="md-block">
+            <label>{{boom.fields.Skiffs_Punts.alias}}:</label>
+            <input type="number" ng-model="boom.attributes.Skiffs_Punts"
+                   maxlength="{{boom.fields.Skiffs_Punts.length}}">
+        </md-input-container>
+
+        <md-input-container class="md-block">
+            <label>{{boom.fields.Skimmers_No.alias}}:</label>
+            <input type="number" ng-model="boom.attributes.Skimmers_No"
+                   maxlength="{{boom.fields.Skimmers_No.length}}">
+        </md-input-container>
+
+        <md-input-container class="md-block">
+            <label>{{boom.fields.Skimmers_Type.alias}}:</label>
+            <input type="text" ng-model="boom.attributes.Skimmers_Type"
+                   maxlength="{{boom.fields.Skimmers_Type.length}}">
+        </md-input-container>
+
+        <md-input-container class="md-block">
+            <label>{{boom.fields.Anchor_No.alias}}:</label>
+            <input type="number" ng-model="boom.attributes.Anchor_No"
+                   maxlength="{{boom.fields.Anchor_No.length}}">
+        </md-input-container>
+
+        <md-input-container class="md-block">
+            <label>{{boom.fields.Anchor_Type.alias}}:</label>
+            <input type="text" ng-model="boom.attributes.Anchor_Type"
+                   maxlength="{{boom.fields.Anchor_Type.length}}">
+        </md-input-container>
+
+        <md-input-container class="md-block">
+            <label>{{boom.fields.Staff.alias}}:</label>
+            <input type="number" ng-model="boom.attributes.Staff"
+                      maxlength="{{boom.fields.Staff.length}}">
+        </md-input-container>
+    </div>
+
+</md-content>

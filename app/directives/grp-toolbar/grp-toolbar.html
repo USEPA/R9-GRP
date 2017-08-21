@@ -1,0 +1,210 @@
+<!--<md-toolbar layout="column" flex>-->
+<md-toolbar class="md-toolbar-tools" layout="row">
+    <div flex style="font-size: 14px;">
+        <a ui-sref="main" ng-if="!state.is('grps')">{{featureServiceName}}</a>
+        <a ng-if="state.includes('main.coastal_site')"> > Coastal Sensitive Site </a>
+        <a ui-sref="main.coastal_site.general"
+           ng-if="state.includes('main.coastal_site') && !state.includes('main.coastal_site', {siteid:'new'})"> >
+            {{coastalSites.site.attributes.Name}} </a>
+        <a ng-if="state.includes('main.coastal_site', {siteid:'new'})"> > New Site </a>
+        <a ui-sref="main.coastal_site.resources" ng-if="state.includes('main.coastal_site.resources')"> > Resources </a>
+        <a ui-sref="main.coastal_site.contacts" ng-if="state.includes('main.coastal_site.contacts')"> > Contacts </a>
+        <a ng-if="state.includes('main.coastal_site.contacts.contact') && !state.includes('main.coastal_site.contacts.contact', {contactid:'new'})">
+            > Edit Contact </a>
+        <a ng-if="state.includes('main.coastal_site.contacts.contact', {contactid:'new'})"> > New Contact </a>
+        <a ui-sref="main.coastal_site.strategies" ng-if="state.includes('main.coastal_site.strategies')"> > Strategies </a>
+        <a ng-if="state.includes('main.coastal_site.strategies.strategy') && !state.includes('main.coastal_site.strategies.strategy', {strategyid:'new'})">
+            > {{strategy.attributes.Name}} </a>
+        <a ng-if="state.includes('main.coastal_site.strategies.strategy', {strategyid:'new'})"> > New Strategy </a>
+        <a ui-sref="main.coastal_site.attachments" ng-if="state.includes('main.coastal_site.attachments')"> > Attachments </a>
+        <!-- inland zone -->
+        <a ng-if="state.includes('main.inland_site')"> > Inland Sensitive Site </a>
+        <a ui-sref="main.inland_site.general"
+           ng-if="state.includes('main.inland_site') && !state.includes('main.inland_site', {siteid:'new'})"> >
+            {{inlandSites.site.attributes.Name}} </a>
+        <a ng-if="state.includes('main.inland_site', {siteid:'new'})"> > New Site </a>
+        <a ui-sref="main.inland_site.resources" ng-if="state.includes('main.inland_site.resources')"> > Resources </a>
+        <a ui-sref="main.inland_site.contacts" ng-if="state.includes('main.inland_site.contacts')"> > Contacts </a>
+        <a ng-if="state.includes('main.inland_site.contacts.contact') && !state.includes('main.inland_site.contacts.contact', {contactid:'new'})">
+            > Edit Contact </a>
+        <a ng-if="state.includes('main.inland_site.contacts.contact', {contactid:'new'})"> > New Contact </a>
+        <a ui-sref="main.inland_site.strategies" ng-if="state.includes('main.inland_site.strategies')"> > Strategies </a>
+        <a ng-if="state.includes('main.inland_site.strategies.strategy') && !state.includes('main.inland_site.strategies.strategy', {strategyid:'new'})">
+            > {{strategy.attributes.Name}} </a>
+        <a ng-if="state.includes('main.inland_site.strategies.strategy', {strategyid:'new'})"> > New Strategy </a>
+        <a ui-sref="main.inland_site.attachments" ng-if="state.includes('main.inland_site.attachments')"> > Attachments </a>
+
+        <!--IAP Section -->
+        <a ng-if="state.includes('main.iap')"> > Incident Action Plan </a>
+        <a ui-sref="main.iap.general"
+           ng-if="state.includes('main.iap') && !state.is('main.iap.general', {planid: 'new'})"> >
+            {{IAP.plan.attributes.Name}} </a>
+        <a ng-if="state.is('main.iap.general', {planid:'new'})"> > New Plan </a>
+        <a ng-if="state.includes('main.iap.objectives')"> > Objectives (ICS 202) </a>
+        <a ng-if="state.includes('main.iap.ics234')"> > Work Analysis Matrix (ICS 234) </a>
+        <a ng-if="state.includes('main.iap.ics205')"> > Incident Communication Plan (ICS 205) </a>
+        <a ng-if="state.includes('main.iap.assignments')"> > Assignment Lists (ICS 204) </a>
+        <a ng-if="state.includes('main.iap.contacts')"> > Contacts </a>
+        <a ng-if="state.includes('main.iap.contacts.contact') && !state.includes('main.iap.contacts.contact', {contactid:'new'})">
+            > Edit Contact </a>
+        <a ng-if="state.includes('main.iap.contacts.contact', {contactid:'new'})"> > New Contact </a>
+        <a ng-if="state.includes('main.iap.medical')"> > Medical Plan (206) </a>
+        <a ng-if="state.includes('main.iap.attachments')"> > Attachments </a>
+
+
+        <!--<a ng-if="currentState.indexOf('site') > -1"> > Editing </a>-->
+        <a ng-if="state.includes('contacts')"> > Contacts</a>
+
+
+        <a ng-if="state.includes('main.defaults')" ui-sref="main.defaults"> > Manage Defaults</a>
+        <a ng-if="state.includes('main.defaults.objectives')"> > Incident Objectives (ICS 202)</a>
+        <a ng-if="state.includes('main.defaults.ics234')"> > Work Analysis Matrix (ICS 234)</a>
+        <a ng-if="state.includes('main.defaults.assignments')"> > Assignment List (ICS 204)</a>
+
+
+    </div>
+
+    <!-- beging main state -->
+    <span ng-show="!state.includes('main.coastal_site') && !state.includes('main.inland_site') && !state.includes('main.iap') && !state.includes('main.defaults')" flex></span>
+    <div ng-if="state.is('main') && authenticated" layout="row">
+        <md-button ng-if="config.coastalZone" layout="column" class="md-raised md-primary" ui-sref="main.coastal_site.general({siteid: 'new'})">Create
+            Coastal Sensitive Site
+        </md-button>
+        <md-button ng-if="config.inlandZone" layout="column" class="md-raised md-primary" ui-sref="main.inland_site.general({siteid: 'new'})">Create
+            Inland Sensitive Site
+        </md-button>
+        <md-button layout="column" class="md-raised md-primary" ui-sref="main.iap.general({planid: 'new'})">Create
+            Incident Action Plan
+        </md-button>
+        <md-autocomplete layout="column" style="min-width: 400px;"
+                         md-selected-item="selectedItem" md-search-text="searchText"
+                         md-items="item in getMatches(searchText)" md-item-text="item.attributes.Name"
+                         md-selected-item-change="selectedItemChange(item)"
+                         md-delay="500" placeholder="Sensitive Sites/Incident Action Plans"
+                         md-autofocus="true" md-no-cache="true" md-min-length="0">
+            <md-item-template>
+                <span md-highlight-text="searchText">{{item.attributes.Name}}</span>
+                <span style="color:rgba(0,0,0,0.54)" ng-if="coastalSites.Sites.layer.name === item._layer.name">
+                    (Coastal Sensitive Site)
+                </span>
+                <span style="color:rgba(0,0,0,0.54)" ng-if="inlandSites.Sites.layer.name === item._layer.name">
+                    (Inland Sensitive Site)
+                </span>
+                <span style="color:rgba(0,0,0,0.54)" ng-if="IAP.layer.name === item._layer.name">
+                    (Incident Action Plan)
+                </span>
+            </md-item-template>
+            <md-not-found>
+                Sensite Site/Incident Action Plan "{{searchText}}" not found
+            </md-not-found>
+        </md-autocomplete>
+    </div>
+    <!-- end main state -->
+    <!-- begin coastal_site state
+     TODO: switch ng-show to more positive value if necessary -->
+    <div ng-if="state.includes('main.coastal_site') && !state.includes('main.coastal_site', {siteid:'new'})" flex>
+        <md-tabs id="customSiteTabs" flex md-selected="selectedIndex" md-swipe-content="true"
+                 md-dynamic-height="true">
+            <md-tab label="general" ui-sref="main.coastal_site.general"
+                    md-active="state.includes('main.coastal_site.general')"></md-tab>
+            <md-tab label="resources at risk" ui-sref="main.coastal_site.resources"
+                    md-active="state.includes('main.coastal_site.resources')"></md-tab>
+            <md-tab label="contacts" ui-sref="main.coastal_site.contacts"
+                    md-active="state.includes('main.coastal_site.contacts')"></md-tab>
+            <md-tab label="strategies" ng-click="go('main.coastal_site.strategies')"
+                    md-active="state.includes('main.coastal_site.strategies') || state.includes('main.coastal_site.strategies.strategy') || state.includes('main.coastal_site.strategies.strategy.boom')"></md-tab>
+            <md-tab label="logistics" ui-sref="main.coastal_site.logistics"
+                    md-active="state.includes('main.coastal_site.logistics')"></md-tab>
+            <md-tab label="attachments" ui-sref="main.coastal_site.attachments"
+                    md-active="state.includes('main.coastal_site.attachments')"></md-tab>
+            <!-- hacky solution to issues with scrolling tabs -->
+            <md-tab label=""></md-tab>
+            <md-tab label=""></md-tab>
+        </md-tabs>
+    </div>
+    <!-- end coastal_site state -->
+    <!-- begin inland_site state
+ TODO: switch ng-show to more positive value if necessary -->
+    <div ng-if="state.includes('main.inland_site') && !state.includes('main.inland_site', {siteid:'new'})" flex>
+        <md-tabs id="customSiteTabs" flex md-selected="selectedIndex" md-swipe-content="true"
+                 md-dynamic-height="true">
+            <md-tab label="general" ui-sref="main.inland_site.general"
+                    md-active="state.includes('main.inland_site.general')"></md-tab>
+            <md-tab label="resources at risk" ui-sref="main.inland_site.resources"
+                    md-active="state.includes('main.inland_site.resources')"></md-tab>
+            <md-tab label="contacts" ui-sref="main.inland_site.contacts"
+                    md-active="state.includes('main.inland_site.contacts')"></md-tab>
+            <md-tab label="strategies" ng-click="go('main.inland_site.strategies')"
+                    md-active="state.includes('main.inland_site.strategies') || state.includes('main.inland_site.strategies.strategy') || state.includes('main.inland_site.strategies.strategy.boom')"></md-tab>
+            <md-tab label="logistics" ui-sref="main.inland_site.logistics"
+                    md-active="state.includes('main.inland_site.logistics')"></md-tab>
+            <md-tab label="attachments" ui-sref="main.inland_site.attachments"
+                    md-active="state.includes('main.inland_site.attachments')"></md-tab>
+            <!-- hacky solution to issues with scrolling tabs -->
+            <md-tab label=""></md-tab>
+            <md-tab label=""></md-tab>
+        </md-tabs>
+    </div>
+    <!-- end inland_site state -->
+    <!-- begin iap state
+     TODO: switch ng-show to more positive value if necessary -->
+    <div ng-if="state.includes('main.iap') && !state.includes('main.iap', {planid:'new'})" flex>
+        <md-tabs id="customIAPTabs" flex md-selected="selectedIndex" md-swipe-content="true"
+                 md-dynamic-height="true">
+            <md-tab label="general" ui-sref="main.iap.general"
+                    md-active="state.includes('main.iap.general')"></md-tab>
+            <md-tab label="Objectives (ICS 202)" ui-sref="main.iap.objectives"
+                    md-active="state.includes('main.iap.objectives')"></md-tab>
+            <md-tab label="Work Analysis Matrix (ICS 234)" ui-sref="main.iap.ics234"
+                    md-active="state.includes('main.iap.ics234')"></md-tab>
+            <md-tab label="Assignment Lists (ICS 204)" ui-sref="main.iap.assignments"
+                    md-active="state.includes('main.iap.assignments')"></md-tab>
+            <md-tab label="Contact List" ui-sref="main.iap.contacts"
+                    md-active="state.includes('main.iap.contacts')"></md-tab>
+            <md-tab label="Incident Communication Plan (ICS 205)" ui-sref="main.iap.ics205"
+                    md-active="state.includes('main.iap.ics205')"></md-tab>
+            <md-tab label="Medical Plan (ICS 206)" ng-click="go('main.iap.medical')"
+                    md-active="state.includes('main.iap.medical')"></md-tab>
+            <md-tab label="attachments" ui-sref="main.iap.attachments"
+                    md-active="state.includes('main.iap.attachments')"></md-tab>
+            <!-- hacky solution to issues with scrolling tabs being hidden -->
+            <md-tab label=""></md-tab>
+            <md-tab label=""></md-tab>
+        </md-tabs>
+    </div>
+    <!-- end iap state -->
+    <div ng-if="state.includes('main.contacts')" layout="row">
+        <md-autocomplete layout="column" style="min-width: 400px;"
+                         md-search-text="searchText"
+                         md-items="item in []"
+                         md-search-text-change="getMatches(searchText)"
+                         md-delay="500" placeholder="Filter contacts by name"
+                         md-autofocus="true" md-no-cache="true">
+        </md-autocomplete>
+    </div>
+    <div ng-if="state.is('grps')" layout="row">
+        <md-autocomplete layout="column" style="min-width: 400px;"
+                         md-search-text="searchText"
+                         md-items="item in []"
+                         md-search-text-change="getMatches(searchText)"
+                         md-delay="500" placeholder="Filter GRPs by name"
+                         md-autofocus="true" md-no-cache="true">
+        </md-autocomplete>
+    </div>
+
+    <!--<div ng-show="state.includes('main.defaults')" flex="75">-->
+        <!--<md-tabs id="defaultsTabs" flex md-selected="selectedIndex" md-swipe-content="true"-->
+                 <!--md-dynamic-height="true">-->
+            <!--<md-tab label="Objectives (ICS 202)" ui-sref="main.defaults.objectives"-->
+                    <!--md-active="state.includes('main.defaults.objectives')"></md-tab>-->
+            <!--<md-tab label="Work Analysis Matrix (ICS 234)" ui-sref="main.defaults.ics234"-->
+                    <!--md-active="state.includes('main.defaults.ics234')"></md-tab>-->
+            <!--<md-tab label="Assignment Lists (ICS 204)" ui-sref="main.defaults.assignments"-->
+                    <!--md-active="state.includes('main.defaults.assignments')"></md-tab>-->
+            <!--&lt;!&ndash; hacky solution to issues with scrolling tabs being hidden &ndash;&gt;-->
+            <!--<md-tab label=""></md-tab>-->
+            <!--<md-tab label=""></md-tab>-->
+        <!--</md-tabs>-->
+    <!--</div>-->
+</md-toolbar>
+<!--</md-toolbar>-->
